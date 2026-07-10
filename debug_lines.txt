@@ -1,0 +1,542 @@
+1:"use client";
+2:
+3:import { useState, useRef, useEffect } from "react";
+4:import { 
+5:  Sparkle, ArrowRight, Paperclip, MicrophoneStage, CaretDown, Users, Info, 
+6:  MagnifyingGlass, Plus, At, Robot, CheckSquare, ListDashes, ClockCounterClockwise, 
+7:  ShieldCheck, Wrench, FolderOpen, Kanban, CheckCircle, ChatCircle, ArrowUp,
+8:  DotsThree, Clock, X, SidebarSimple, CornersOut, FileText, PushPin, ShareNetwork, Trash,
+9:  TextT, TextAUnderline, Highlighter, TextB, TextItalic, TextUnderline, TextStrikethrough, 
+10:  TextHOne, TextHTwo, TextHThree, ListBullets, ListNumbers, ListChecks, Quotes, 
+11:  Link as LinkIcon, Image as PhosphorImage, Globe, Table, ArrowUUpLeft, ArrowUUpRight, Check,
+12:  Copy, CaretRight, ArrowUpRight
+13:} from "@phosphor-icons/react/dist/ssr";
+14:import Image from "next/image";
+15:import { clsx } from "clsx";
+16:
+17:const agents = [
+18:  { name: "Indie", role: "Design Lead", img: "indie" },
+19:  { name: "Riley", role: "Head of Research", img: "riley" },
+20:  { name: "Jordan", role: "Marketing", img: "jordan" },
+21:  { name: "Casey", role: "Content", img: "casey" },
+22:  { name: "Darren", role: "AI CTO", img: "darren" },
+23:  { name: "Harper", role: "Legal", img: "harper" },
+24:];
+25:
+26:export default function ChatsPage() {
+27:  const [isRightPanelOpen, setIsRightPanelOpen] = useState(false);
+28:  const [rightPanelWidth, setRightPanelWidth] = useState(500);
+29:  const isResizingRight = useRef(false);
+30:
+31:  useEffect(() => {
+32:    const handleMouseMove = (e: MouseEvent) => {
+33:      if (!isResizingRight.current) return;
+34:      
+35:      const newWidth = document.body.clientWidth - e.clientX;
+36:      if (newWidth >= 300 && newWidth <= 800) {
+37:        setRightPanelWidth(newWidth);
+38:      }
+39:    };
+40:
+41:    const handleMouseUp = () => {
+42:      isResizingRight.current = false;
+43:      document.body.style.cursor = 'default';
+44:    };
+45:
+46:    document.addEventListener('mousemove', handleMouseMove);
+47:    document.addEventListener('mouseup', handleMouseUp);
+48:
+49:    return () => {
+50:      document.removeEventListener('mousemove', handleMouseMove);
+51:      document.removeEventListener('mouseup', handleMouseUp);
+52:    };
+53:  }, []);
+54:
+55:  return (
+56:    <div className="flex-1 flex overflow-hidden bg-paper">
+57:      
+58:      {/* Context Panel: Chat List */}
+59:      <div className="w-[300px] flex-shrink-0 border-r border-border bg-paper flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
+60:        <div className="p-4 pt-5 pb-3">
+61:          <div className="flex items-center justify-between mb-4">
+62:            <h2 className="text-[20px] font-display font-bold tracking-tight text-ink">Chats</h2>
+63:            <button className="text-ink hover:bg-paper-elevated p-1.5 rounded-full transition-colors">
+64:              <Plus size={18} weight="bold" />
+65:            </button>
+66:          </div>
+67:          <div className="relative">
+68:            <input 
+69:              type="text" 
+70:              placeholder="Search chats, agents..." 
+71:              className="w-full bg-[#F8F9FA] border border-border/50 rounded-xl py-2 pl-9 pr-4 text-[13px] outline-none focus:border-ink/30 text-ink placeholder:text-ink-muted transition-colors"
+72:            />
+73:            <MagnifyingGlass size={15} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted" />
+74:          </div>
+75:        </div>
+76:        
+77:        <div className="flex-1 overflow-y-auto px-2 space-y-6 pb-6 scrollbar-hide">
+78:          {/* Pinned */}
+79:          <div>
+80:            <p className="px-3 text-[11px] font-semibold tracking-wider text-ink-muted/70 uppercase mb-2">Pinned</p>
+81:            <button className="w-full flex items-center gap-3 p-2 px-3 rounded-2xl bg-[#F8F9FA] hover:bg-paper-elevated text-left transition-colors relative">
+82:              <div className="w-[42px] h-[42px] rounded-full bg-[#FFF4D4] flex items-center justify-center shrink-0 relative overflow-hidden">
+83:                <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
+84:              </div>
+85:              <div className="flex-1 overflow-hidden">
+86:                <div className="flex items-center justify-between">
+87:                  <p className="text-[14px] font-bold text-ink">Astra</p>
+88:                  <span className="w-2 h-2 rounded-full bg-accent-alert" />
+89:                </div>
+90:                <p className="text-[13px] text-ink-muted truncate font-medium">3 decisions need review</p>
+91:              </div>
+92:            </button>
+93:          </div>
+94:
+95:          {/* Groups */}
+96:          <div>
+97:            <div className="flex justify-between items-center px-3 mb-2">
+98:              <p className="text-[11px] font-semibold tracking-wider text-ink-muted/70 uppercase">Groups</p>
+99:              <button className="text-ink-muted hover:text-ink"><Plus size={12} weight="bold" /></button>
+100:            </div>
+101:            <div className="space-y-1">
+102:              <button className="w-full flex items-center gap-3 p-2 px-3 rounded-2xl hover:bg-[#F8F9FA] text-left transition-colors group">
+103:                <div className="w-[42px] h-[42px] rounded-full bg-paper-elevated border border-border/50 text-ink flex items-center justify-center group-hover:border-ink/20 transition-colors"><Users size={20} weight="fill" className="text-ink-muted" /></div>
+104:                <div className="flex-1 overflow-hidden">
+105:                  <p className="text-[14px] font-bold text-ink">WilowAI Launch</p>
+106:                  <p className="text-[13px] text-ink-muted truncate">Indie: Logo concepts ready</p>
+107:                </div>
+108:              </button>
+109:              <button className="w-full flex items-center gap-3 p-2 px-3 rounded-2xl hover:bg-[#F8F9FA] text-left transition-colors group">
+110:                <div className="w-[42px] h-[42px] rounded-full bg-paper-elevated border border-border/50 text-ink flex items-center justify-center group-hover:border-ink/20 transition-colors"><Users size={20} weight="fill" className="text-ink-muted" /></div>
+111:                <div className="flex-1 overflow-hidden">
+112:                  <p className="text-[14px] font-bold text-ink">Website Build</p>
+113:                  <p className="text-[13px] text-ink-muted truncate">Darren: Need approval for...</p>
+114:                </div>
+115:              </button>
+116:            </div>
+117:          </div>
+118:
+119:          {/* Agents */}
+120:          <div>
+121:            <div className="flex justify-between items-center px-3 mb-2">
+122:              <p className="text-[11px] font-semibold tracking-wider text-ink-muted/70 uppercase">Agents</p>
+123:            </div>
+124:            <div className="space-y-1">
+125:              {agents.map(agent => (
+126:                <button key={agent.name} className="w-full flex items-center gap-3 p-2 px-3 rounded-2xl hover:bg-[#F8F9FA] text-left transition-colors">
+127:                  <div className="w-[42px] h-[42px] rounded-full bg-paper-elevated flex items-center justify-center relative overflow-hidden shrink-0 border border-border/20">
+128:                    <Image src={`/avatars/${agent.img}.png`} alt={agent.name} fill className="object-cover" />
+129:                  </div>
+130:                  <div className="flex-1 overflow-hidden">
+131:                    <div className="flex items-center justify-between">
+132:                      <p className="text-[14px] font-bold text-ink">{agent.name}</p>
+133:                    </div>
+134:                    <p className="text-[13px] text-ink-muted truncate">{agent.role}</p>
+135:                  </div>
+136:                </button>
+137:              ))}
+138:            </div>
+139:          </div>
+140:        </div>
+141:      </div>
+142:
+143:      {/* Main Workspace: Chat Area */}
+144:      <div className="flex-1 flex flex-col bg-[#F8F9FA] relative min-w-0">
+145:        
+146:        {/* Stylized lined mint green gradient background */}
+147:        <div 
+148:          className="absolute inset-0 pointer-events-none z-0"
+149:          style={{
+150:            backgroundImage: `
+151:              repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.03) 31px, rgba(14, 116, 75, 0.03) 32px),
+152:              linear-gradient(to bottom, transparent 0%, rgba(157, 224, 185, 0.15) 100%)
+153:            `,
+154:            WebkitMaskImage: 'linear-gradient(to top, black 20%, transparent 100%)',
+155:            maskImage: 'linear-gradient(to top, black 20%, transparent 100%)'
+156:          }}
+157:        />
+158:
+159:        {/* Header */}
+160:        <header className="h-[52px] border-b border-border flex items-center justify-between shrink-0 bg-paper/80 backdrop-blur-sm z-20 sticky top-0 px-2">
+161:        <header className="h-[52px] border-b border-border flex items-center justify-between shrink-0 bg-paper/80 backdrop-blur-sm z-20 sticky top-0 px-2">
+162:          {/* Left Tabs */}
+163:          <div className="flex h-full items-end gap-1 px-1 pt-1.5">
+164:            
+165:            {/* Active Tab */}
+166:            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 bg-[#F8F9FA] border border-border/50 border-b-[#F8F9FA] rounded-t-[10px] min-w-[180px] max-w-[220px] cursor-pointer translate-y-[1px]">
+167:               <div className="w-[18px] h-[18px] rounded-full overflow-hidden shrink-0 relative">
+168:                 <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
+169:               </div>
+170:               <span className="text-[13px] font-medium text-ink truncate flex-1">Video sizing on the...</span>
+171:               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+172:                 <X size={12} weight="bold" />
+173:               </button>
+174:               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#F8F9FA] to-transparent rounded-tr-[10px] pointer-events-none group-hover:opacity-0 transition-opacity" />
+175:            </div>
+176:
+177:            {/* Inactive Tab 1 */}
+178:            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/50 border border-transparent rounded-t-[10px] min-w-[180px] max-w-[220px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
+179:               <div className="w-[18px] h-[18px] rounded-full overflow-hidden shrink-0 relative opacity-70 group-hover:opacity-100 transition-opacity">
+180:                 <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
+181:               </div>
+182:               <span className="text-[13px] font-medium truncate flex-1">Stripe integration for...</span>
+183:               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+184:                 <X size={12} weight="bold" />
+185:               </button>
+186:               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-paper group-hover:from-[#F8F9FA]/50 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
+187:            </div>
+188:
+189:            {/* Inactive Tab 2 */}
+190:            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/50 border border-transparent rounded-t-[10px] min-w-[180px] max-w-[220px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
+191:               <div className="w-[18px] h-[18px] rounded-full overflow-hidden shrink-0 relative opacity-70 group-hover:opacity-100 transition-opacity">
+192:                 <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
+193:               </div>
+194:               <span className="text-[13px] font-medium truncate flex-1">Account manag...</span>
+195:               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+196:                 <X size={12} weight="bold" />
+197:               </button>
+198:               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-paper group-hover:from-[#F8F9FA]/50 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
+199:            </div>
+200:
+201:          </div>
+202:
+203:          {/* Right Actions */}
+204:          <div className="flex gap-1 h-full items-center">
+205:            <button className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md transition-colors">
+206:              <Plus size={16} />
+207:            </button>
+208:            <button className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md transition-colors">
+209:              <Clock size={16} />
+210:            </button>
+211:            <button className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md transition-colors">
+212:              <DotsThree size={20} />
+213:            </button>
+214:            <div className="h-4 w-px bg-border mx-1" />
+215:            <button 
+216:              onClick={() => setIsRightPanelOpen(!isRightPanelOpen)}
+217:              className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md transition-colors -scale-x-100"
+218:            >
+219:              <SidebarSimple size={18} />
+220:            </button>
+221:          </div>
+222:        </header>
+223:
+224:        {/* Chat Thread */}
+225:        <div className="flex-1 overflow-y-auto p-6 space-y-8 pb-48 scrollbar-hide pt-4 flex flex-col items-center relative z-10 w-full">
+226:          <div className="w-full max-w-[850px] flex flex-col space-y-8">
+227:            <div className="flex justify-center my-6">
+228:            <span className="px-3 py-1 bg-paper rounded-full border border-border/50 text-[11px] font-bold text-ink-muted uppercase tracking-wider shadow-sm">Today</span>
+229:          </div>
+230:
+231:            {/* User Message */}
+232:            <div className="flex justify-end pr-[58px]">
+233:              <div className="bg-ink text-paper px-5 py-3.5 rounded-[20px] rounded-tr-[4px] max-w-[600px] shadow-sm">
+234:                <p className="text-[15px] leading-relaxed">Create a launch plan for WilowAI.</p>
+235:              </div>
+236:            </div>
+237:
+238:          {/* Astra Response: Complex Message */}
+239:          <div className="flex gap-4">
+240:            <div className="w-[42px] h-[42px] rounded-full bg-[#FFF4D4] flex items-center justify-center shrink-0 relative overflow-hidden shadow-sm mt-1 border border-border/20">
+241:              <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
+242:            </div>
+243:            
+244:            <div className="flex-1 space-y-4 max-w-[650px]">
+245:              <div className="flex items-baseline gap-2">
+246:                <p className="text-[15px] font-bold text-ink tracking-tight">Astra</p>
+247:                <span className="text-[12px] text-ink-muted font-medium">10:42 AM</span>
+248:              </div>
+249:              
+250:              <div className="bg-paper border border-border/50 px-5 py-4 rounded-[20px] rounded-tl-[4px] shadow-sm text-ink text-[15px] leading-relaxed">
+251:                I'll coordinate this with Jordan, Riley, and Casey. I've broken down the work into 3 tasks for the team:
+252:              </div>
+253:              
+254:              {/* Task Spawn Card inside Chat - Modeled after Home cards */}
+255:              <div className="bg-paper border border-border rounded-[20px] p-1.5 flex flex-col shadow-sm max-w-[400px]">
+256:                <div className="flex items-center gap-3 px-3 pt-2.5 pb-2">
+257:                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
+258:                    <Kanban size={18} weight="fill" className="text-purple-600" />
+259:                  </div>
+260:                  <p className="text-[15px] font-bold text-ink tracking-tight">3 Tasks Created</p>
+261:                </div>
+262:                
+263:                <div className="bg-[#F8F9FA] rounded-[14px] p-2 flex flex-col mx-1 mb-1 border border-border/40">
+264:                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-white hover:shadow-sm cursor-pointer transition-all group">
+265:                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50 shrink-0">
+266:                      <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
+267:                    </div>
+268:                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-blue-600 transition-colors">Research launch channels</p>
+269:                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+270:                  </div>
+271:                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-white hover:shadow-sm cursor-pointer transition-all group">
+272:                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50 shrink-0">
+273:                      <Image src="/avatars/jordan.png" alt="Jordan" fill className="object-cover" />
+274:                    </div>
+275:                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-blue-600 transition-colors">Create GTM plan</p>
+276:                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+277:                  </div>
+278:                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-white hover:shadow-sm cursor-pointer transition-all group">
+279:                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50 shrink-0">
+280:                      <Image src="/avatars/casey.png" alt="Casey" fill className="object-cover" />
+281:                    </div>
+282:                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-blue-600 transition-colors">Draft launch copy</p>
+283:                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+284:                  </div>
+285:                  
+286:                  <div className="mt-1 pt-2.5 px-2 pb-1 border-t border-border/40">
+287:                    <button className="text-[13px] font-bold text-ink flex items-center gap-1.5 hover:text-blue-600 transition-colors">
+288:                      View board <ArrowRight size={12} weight="bold" />
+289:                    </button>
+290:                  </div>
+291:                </div>
+292:              </div>
+293:
+294:              <div className="bg-paper border border-border/50 px-5 py-4 rounded-[20px] shadow-sm text-ink text-[15px] leading-relaxed">
+295:                I'll ask you before publishing or contacting anyone externally. Is there a specific channel you want to prioritize first?
+296:              </div>
+297:            </div>
+298:          </div>
+299:
+300:          {/* System Note */}
+301:          <div className="flex justify-center mt-2 mb-4">
+302:            <div className="flex items-center gap-2 bg-paper border border-border/50 px-3 py-1.5 rounded-full text-[12px] font-medium text-ink-muted shadow-sm">
+303:              <Sparkle size={14} weight="fill" className="text-accent-gold" />
+304:              Astra linked <span className="text-ink font-bold hover:underline cursor-pointer">Q3 Launch Budget Draft</span>
+305:            </div>
+306:          </div>
+307:
+308:            {/* User Message */}
+309:            <div className="flex justify-end pr-[58px]">
+310:              <div className="bg-ink text-paper px-5 py-3.5 rounded-[20px] rounded-tr-[4px] max-w-[600px] shadow-sm">
+311:                <p className="text-[15px] leading-relaxed">Can we also get someone to research screen recording apps?</p>
+312:              </div>
+313:            </div>
+314:
+315:          {/* Astra Response: Single Task Created */}
+316:          <div className="flex gap-4">
+317:            <div className="w-[42px] h-[42px] rounded-full bg-[#FFF4D4] flex items-center justify-center shrink-0 relative overflow-hidden shadow-sm mt-1 border border-border/20">
+318:              <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
+319:            </div>
+320:            
+321:            <div className="flex-1 space-y-3 max-w-[650px]">
+322:              <div className="flex items-baseline gap-2">
+323:                <p className="text-[15px] font-bold text-ink tracking-tight">Astra</p>
+324:                <span className="text-[12px] text-ink-muted font-medium">10:45 AM</span>
+325:              </div>
+326:              
+327:              {/* Tool Usage Indicator */}
+328:              <div className="flex items-center gap-1.5 text-[12px] font-medium text-ink-muted hover:text-ink cursor-pointer transition-colors w-fit">
+329:                <CaretRight size={12} weight="bold" />
+330:                <Wrench size={12} weight="fill" className="text-ink-muted/70" />
+331:                <span>Used tyctl task create</span>
+332:                <span className="text-ink-faint">(1)</span>
+333:              </div>
+334:              
+335:              <div className="text-ink text-[15px] leading-relaxed pl-1">
+336:                Riley's on it — researching screen recording apps now.
+337:              </div>
+338:              
+339:              {/* Task Creation Block - Updated to match screenshot UI */}
+340:              <div className="bg-paper border border-border rounded-[20px] p-1.5 flex flex-col shadow-sm max-w-[400px]">
+341:                <div className="flex items-center gap-3 px-3 pt-2.5 pb-2">
+342:                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
+343:                    <Kanban size={18} weight="fill" className="text-purple-600" />
+344:                  </div>
+345:                  <p className="text-[15px] font-bold text-ink tracking-tight">Task Created</p>
+346:                </div>
+347:                
+348:                <div className="bg-[#F8F9FA] rounded-[14px] p-3 flex flex-col gap-3 mx-1 mb-1 border border-border/40 hover:border-border hover:shadow-sm transition-all group cursor-pointer">
+349:                  <div className="flex items-start gap-3">
+350:                    <div className="w-8 h-8 rounded-full overflow-hidden relative border border-border/50 shrink-0 shadow-sm">
+351:                      <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
+352:                    </div>
+353:                    <div className="flex-1 min-w-0 flex flex-col gap-1.5 pt-0.5">
+354:                      <p className="text-[14px] font-semibold text-ink leading-snug group-hover:text-blue-600 transition-colors">Research screen recording apps</p>
+355:                      <div className="flex items-center gap-2.5">
+356:                        <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider bg-border/50 px-1.5 py-0.5 rounded">DWA-3</span>
+357:                        <div className="flex items-center gap-1.5">
+358:                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_4px_rgba(59,130,246,0.4)]" />
+359:                          <span className="text-[11px] font-semibold text-ink-muted">To Do</span>
+360:                        </div>
+361:                        <div className="w-1 h-1 rounded-full bg-border" />
+362:                        <span className="text-[11px] font-medium text-ink-muted flex items-center gap-1"><Clock size={12} /> Today</span>
+363:                      </div>
+364:                    </div>
+365:                  </div>
+366:                  
+367:                  <div className="pt-2.5 border-t border-border/40 flex justify-between items-center">
+368:                    <span className="text-[12px] font-medium text-ink-muted group-hover:text-ink transition-colors">Click to open details</span>
+369:                    <ArrowUpRight size={14} className="text-ink-muted group-hover:text-blue-600 transition-colors" weight="bold" />
+370:                  </div>
+371:                </div>
+372:              </div>
+373:            </div>
+374:          </div>
+375:          </div>
+376:        </div>
+377:
+378:        {/* Composer Area */}
+379:        <div className="absolute bottom-0 left-0 right-0 z-20 flex justify-center pb-6 pt-20 px-6">
+380:          {/* Fade out gradient for scrolling text */}
+381:          <div className="absolute inset-0 bg-gradient-to-t from-[#F8F9FA] via-[#F8F9FA]/80 to-transparent pointer-events-none z-10" />
+382:          
+383:          <div className="w-full max-w-[850px] flex relative pointer-events-auto z-20">
+384:            <div className="w-[58px] shrink-0" /> {/* Spacer for avatar alignment */}
+385:            
+386:            <div className="flex-1 bg-paper/95 backdrop-blur-xl border border-border/80 shadow-[0_0_30px_rgba(52,211,153,0.1)] rounded-[20px] flex flex-col p-2 focus-within:border-ink/40 focus-within:bg-paper transition-all duration-300">
+387:              <textarea 
+388:                placeholder="Reply to Astra..."
+389:                className="flex-1 bg-transparent border-none outline-none text-[14px] placeholder:text-ink-muted px-3 py-2 resize-none min-h-[44px]"
+390:              />
+391:              <div className="flex items-center justify-between px-1">
+392:                 <div className="flex items-center gap-0.5">
+393:                   <button className="p-1.5 text-ink-muted hover:bg-[#F8F9FA] hover:text-ink rounded-full transition-colors">
+394:                     <Plus size={18} />
+395:                   </button>
+396:                   <button className="p-1.5 text-ink-muted hover:bg-[#F8F9FA] hover:text-ink rounded-full transition-colors">
+397:                     <At size={18} />
+398:                   </button>
+399:                   <button className="p-1.5 text-ink-muted hover:bg-[#F8F9FA] hover:text-ink rounded-full transition-colors">
+400:                     <MicrophoneStage size={18} />
+401:                   </button>
+402:                   <button className="p-1.5 text-ink-muted hover:bg-[#F8F9FA] hover:text-ink rounded-full transition-colors">
+403:                     <div className="border border-current rounded-[6px] w-[18px] h-[18px] flex items-center justify-center text-[10px] font-bold">/</div>
+404:                   </button>
+405:                 </div>
+406:                 <button className="bg-ink text-paper rounded-full hover:opacity-90 transition-opacity flex items-center justify-center w-8 h-8 shadow-sm mr-1">
+407:                   <ArrowUp size={14} weight="bold" />
+408:                 </button>
+409:              </div>
+410:            </div>
+411:            
+412:            <div className="w-[58px] shrink-0" /> {/* Spacer for right alignment */}
+413:          </div>
+414:        </div>
+415:      </div>
+416:
+417:      {/* Document Editor Panel (Right) */}
+418:      {isRightPanelOpen && (
+419:        <div 
+420:          className="flex-shrink-0 bg-paper border-l border-border flex flex-col h-full z-20 shadow-2xl relative"
+421:          style={{ width: `${rightPanelWidth}px`, transition: isResizingRight.current ? 'none' : 'width 300ms ease-in-out' }}
+422:        >
+423:          {/* Drag Handle */}
+424:          <div 
+425:            className="absolute top-0 left-0 w-1.5 h-full cursor-col-resize hover:bg-border/50 transition-colors z-30"
+426:            onMouseDown={(e) => {
+427:              isResizingRight.current = true;
+428:              document.body.style.cursor = 'col-resize';
+429:              e.preventDefault();
+430:            }}
+431:          />
+432:          
+433:          {/* Top Tabs Bar */}
+434:          <div className="h-[52px] flex items-end pl-3 pr-1 bg-paper border-b border-border shrink-0">
+435:             <div className="flex items-center gap-2 bg-[#F8F9FA] h-[38px] pl-3 pr-2 rounded-t-[10px] border border-border/50 border-b-[#F8F9FA] text-[13px] text-ink font-medium translate-y-[1px] min-w-[180px]">
+436:               <FileText size={16} className="text-blue-500 shrink-0" weight="fill" />
+437:               <span className="truncate flex-1">wilow_planning_r...</span>
+438:               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors"><X size={12} weight="bold" /></button>
+439:             </div>
+440:             <button className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md mb-1.5 ml-1 transition-colors"><Plus size={16} /></button>
+441:             
+442:             <div className="flex-1 flex justify-end items-center gap-1 text-ink-muted pb-2 pr-2">
+443:               <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><CaretDown size={16} /></button>
+444:               <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><CornersOut size={16} /></button>
+445:               <button 
+446:                 onClick={() => setIsRightPanelOpen(false)}
+447:                 className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"
+448:               >
+449:                 <SidebarSimple size={18} className="-scale-x-100" />
+450:               </button>
+451:             </div>
+452:          </div>
+453:          
+454:          {/* Toolbar */}
+455:          <div className="h-[48px] flex items-center justify-between px-4 shrink-0 border-b border-border bg-[#F8F9FA]">
+456:            <div className="flex items-center gap-3">
+457:              <span className="text-[14px] font-medium text-ink tracking-wide">wilow_planning_report</span>
+458:              <span className="text-[10px] font-bold text-ink-muted bg-paper-elevated border border-border/50 px-1.5 py-0.5 rounded tracking-wider">DOC</span>
+459:            </div>
+460:            <div className="flex items-center gap-3">
+461:              <button className="text-[12px] font-medium text-ink-muted hover:text-ink flex items-center gap-1 transition-colors mr-2">
+462:                110% <CaretDown size={10} weight="bold" />
+463:              </button>
+464:              <div className="flex items-center gap-1.5">
+465:                <button className="flex items-center justify-center w-[32px] h-[32px] bg-paper hover:bg-paper-elevated border border-border/80 rounded-[8px] text-ink-muted hover:text-ink transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+466:                  <PushPin size={16} weight="bold" />
+467:                </button>
+468:                <button className="flex items-center justify-center w-[32px] h-[32px] bg-paper hover:bg-paper-elevated border border-border/80 rounded-[8px] text-ink-muted hover:text-ink transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+469:                  <ClockCounterClockwise size={16} weight="bold" />
+470:                </button>
+471:                <button className="flex items-center gap-1.5 h-[32px] px-3 bg-paper hover:bg-paper-elevated border border-border/80 rounded-[8px] text-[13px] font-medium text-ink transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+472:                  <ShareNetwork size={16} weight="bold" />
+473:                  Share
+474:                </button>
+475:                <button className="flex items-center justify-center w-[32px] h-[32px] bg-paper hover:bg-paper-elevated border border-border/80 rounded-[8px] text-ink-muted hover:text-ink transition-colors shadow-[0_1px_2px_rgba(0,0,0,0.02)]">
+476:                  <Trash size={16} weight="bold" />
+477:                </button>
+478:              </div>
+479:            </div>
+480:          </div>
+481:
+482:          {/* Formatting Toolbar */}
+483:          <div className="h-[44px] flex items-center justify-between px-4 shrink-0 border-b border-border bg-paper overflow-x-auto scrollbar-hide">
+484:            <div className="flex items-center gap-1 text-ink-muted shrink-0">
+485:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextT size={18} /></button>
+486:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextAUnderline size={18} /></button>
+487:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><Highlighter size={18} /></button>
+488:              
+489:              <div className="w-px h-4 bg-border mx-1" />
+490:              
+491:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextB size={18} /></button>
+492:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextItalic size={18} /></button>
+493:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextUnderline size={18} /></button>
+494:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextStrikethrough size={18} /></button>
+495:              
+496:              <div className="w-px h-4 bg-border mx-1" />
+497:              
+498:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextHOne size={18} /></button>
+499:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextHTwo size={18} /></button>
+500:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><TextHThree size={18} /></button>
+501:              
+502:              <div className="w-px h-4 bg-border mx-1" />
+503:              
+504:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><ListBullets size={18} /></button>
+505:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><ListNumbers size={18} /></button>
+506:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><ListChecks size={18} /></button>
+507:              <button className="p-1.5 bg-ink text-paper rounded-[8px] transition-colors mx-0.5"><Quotes size={18} weight="fill" /></button>
+508:              
+509:              <div className="w-px h-4 bg-border mx-1" />
+510:              
+511:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><LinkIcon size={18} /></button>
+512:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><PhosphorImage size={18} /></button>
+513:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><Globe size={18} /></button>
+514:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><Table size={18} /></button>
+515:              
+516:              <div className="w-px h-4 bg-border mx-1" />
+517:              
+518:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><ArrowUUpLeft size={18} /></button>
+519:              <button className="p-1.5 hover:text-ink hover:bg-paper-elevated rounded-md transition-colors"><ArrowUUpRight size={18} /></button>
+520:            </div>
+521:
+522:            <div className="flex items-center gap-1.5 text-[13px] font-medium text-ink-muted pl-4 shrink-0">
+523:              <Check size={16} className="text-emerald-500" weight="bold" />
+524:              Saved
+525:            </div>
+526:          </div>
+527:
+528:          {/* Document Content Area */}
+529:          <div className="flex-1 overflow-y-auto p-8 bg-[#F8F9FA] flex justify-center scrollbar-hide">
+530:            <div className="w-full max-w-[850px] min-h-[800px] bg-white rounded-sm shadow-[0_2px_10px_rgba(0,0,0,0.04)] ring-1 ring-black/5 flex flex-col">
+531:              <textarea 
+532:                className="flex-1 w-full h-full p-10 md:p-16 resize-none outline-none text-ink text-[15px] leading-relaxed bg-transparent font-sans"
+533:                placeholder="Start typing..."
+534:              />
+535:            </div>
+536:          </div>
+537:        </div>
+538:      )}
+539:
+540:    </div>
+541:  );
+542:}
