@@ -173,33 +173,33 @@ export default function TasksPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center bg-[#F8F9FA] border border-border/50 rounded-[22px] p-1.5 shadow-sm">
+            <div className="flex items-center bg-[#F8F9FA] border border-border/50 rounded-[14px] p-1 shadow-sm">
               <button 
                 onClick={() => setView("board")}
                 className={clsx(
-                  "w-10 h-10 flex items-center justify-center rounded-[16px] transition-all duration-200",
-                  view === "board" ? "bg-white text-ink shadow-[0_2px_8px_rgba(0,0,0,0.06)]" : "text-ink-muted hover:text-ink hover:bg-black/5"
+                  "w-8 h-8 flex items-center justify-center rounded-[10px] transition-all duration-200",
+                  view === "board" ? "bg-white text-ink shadow-[0_1px_3px_rgba(0,0,0,0.08)]" : "text-ink-muted hover:text-ink hover:bg-black/5"
                 )}
               >
-                <Kanban size={22} weight={view === "board" ? "bold" : "bold"} />
+                <Kanban size={18} weight={view === "board" ? "bold" : "regular"} />
               </button>
               <button 
                 onClick={() => setView("list")}
                 className={clsx(
-                  "w-10 h-10 flex items-center justify-center rounded-[16px] transition-all duration-200",
-                  view === "list" ? "bg-white text-ink shadow-[0_2px_8px_rgba(0,0,0,0.06)]" : "text-ink-muted hover:text-ink hover:bg-black/5"
+                  "w-8 h-8 flex items-center justify-center rounded-[10px] transition-all duration-200",
+                  view === "list" ? "bg-white text-ink shadow-[0_1px_3px_rgba(0,0,0,0.08)]" : "text-ink-muted hover:text-ink hover:bg-black/5"
                 )}
               >
-                <ListBullets size={22} weight={view === "list" ? "bold" : "bold"} />
+                <ListBullets size={18} weight={view === "list" ? "bold" : "regular"} />
               </button>
             </div>
             
-            <div className="h-4 w-px bg-border mx-2" />
+            <div className="h-4 w-px bg-border/60 mx-1.5" />
             
-            <button className="flex items-center gap-1.5 px-2.5 py-1.5 text-ink-muted hover:text-ink hover:bg-[#F8F9FA] rounded-md transition-colors text-[13px] font-medium">
+            <button className="flex items-center gap-1.5 px-2 py-1.5 text-ink-muted hover:text-ink hover:bg-[#F8F9FA] rounded-md transition-colors text-[13px] font-medium">
               <Funnel size={16} /> Filter
             </button>
-            <button className="flex items-center gap-1.5 px-2.5 py-1.5 text-ink-muted hover:text-ink hover:bg-[#F8F9FA] rounded-md transition-colors text-[13px] font-medium">
+            <button className="flex items-center gap-1.5 px-2 py-1.5 text-ink-muted hover:text-ink hover:bg-[#F8F9FA] rounded-md transition-colors text-[13px] font-medium">
               <SortAscending size={16} /> Sort
             </button>
             <button 
