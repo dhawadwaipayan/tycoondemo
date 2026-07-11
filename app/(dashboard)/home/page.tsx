@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, RocketLaunch, Palette, BookOpen, Clock } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, CheckCircle, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, RocketLaunch, Palette, BookOpen, Clock, Books } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Typewriter, useTypewriterPlaceholder } from "@/components/motion/Typewriter";
 import { FadeIn, Stagger, StaggerItem } from "@/components/motion/PageMotion";
@@ -12,6 +12,41 @@ const COMPOSER_PHRASES = [
   "Ask Astra to plan the next launch…",
   "Draft a brief for Indie…",
   "Summarize what's waiting on you…",
+];
+
+const templates = [
+  {
+    title: "Product Launch",
+    description: "End-to-end launch plan with marketing assets and timelines.",
+    image: "/templates/product-launch.svg",
+    icon: RocketLaunch,
+    iconBg: "bg-blue-500",
+    accent: "from-blue-500/10 to-transparent",
+  },
+  {
+    title: "Brand Identity",
+    description: "Generate logos, color palettes, and typography guidelines.",
+    image: "/templates/brand-identity.svg",
+    icon: Palette,
+    iconBg: "bg-purple-500",
+    accent: "from-purple-500/10 to-transparent",
+  },
+  {
+    title: "Competitor Analysis",
+    description: "Deep dive into market positioning and feature comparisons.",
+    image: "/templates/competitor.svg",
+    icon: PresentationChart,
+    iconBg: "bg-emerald-500",
+    accent: "from-emerald-500/10 to-transparent",
+  },
+  {
+    title: "Content Strategy",
+    description: "Blog topics, social media calendar, and SEO keywords.",
+    image: "/templates/content.svg",
+    icon: BookOpen,
+    iconBg: "bg-orange-500",
+    accent: "from-orange-500/10 to-transparent",
+  },
 ];
 
 const quickActions = [
@@ -394,56 +429,48 @@ export default function HomePage() {
           </div>
         </FadeIn>
 
-        {/* Suggestion Templates */}
+        {/* Templates */}
         <FadeIn delay={0.3} className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-xl font-semibold tracking-tight text-ink">Suggestion templates</h2>
+            <h2 className="text-xl font-semibold tracking-tight text-ink">Templates</h2>
+            <button className="text-[14px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
+              <Books size={15} weight="bold" />
+              Library <ArrowRight size={14} weight="bold" />
+            </button>
           </div>
-          <Stagger className="grid grid-cols-1 md:grid-cols-4 gap-4" delay={0.05} stagger={0.08}>
-            <StaggerItem>
-              <motion.div whileHover={{ y: -3 }} className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm h-full">
-                <div className="w-8 h-8 rounded-[10px] bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <RocketLaunch size={16} weight="fill" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-ink mb-1">Product Launch</p>
-                  <p className="text-[12px] text-ink-muted leading-relaxed">End-to-end launch plan with marketing assets and timelines.</p>
-                </div>
-              </motion.div>
-            </StaggerItem>
-            <StaggerItem>
-              <motion.div whileHover={{ y: -3 }} className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm h-full">
-                <div className="w-8 h-8 rounded-[10px] bg-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <Palette size={16} weight="fill" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-ink mb-1">Brand Identity</p>
-                  <p className="text-[12px] text-ink-muted leading-relaxed">Generate logos, color palettes, and typography guidelines.</p>
-                </div>
-              </motion.div>
-            </StaggerItem>
-            <StaggerItem>
-              <motion.div whileHover={{ y: -3 }} className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm h-full">
-                <div className="w-8 h-8 rounded-[10px] bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <PresentationChart size={16} weight="fill" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-ink mb-1">Competitor Analysis</p>
-                  <p className="text-[12px] text-ink-muted leading-relaxed">Deep dive into market positioning and feature comparisons.</p>
-                </div>
-              </motion.div>
-            </StaggerItem>
-            <StaggerItem>
-              <motion.div whileHover={{ y: -3 }} className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm h-full">
-                <div className="w-8 h-8 rounded-[10px] bg-orange-50 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-                  <BookOpen size={16} weight="fill" />
-                </div>
-                <div>
-                  <p className="text-[14px] font-semibold text-ink mb-1">Content Strategy</p>
-                  <p className="text-[12px] text-ink-muted leading-relaxed">Blog topics, social media calendar, and SEO keywords.</p>
-                </div>
-              </motion.div>
-            </StaggerItem>
+          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" delay={0.05} stagger={0.08}>
+            {templates.map((template) => {
+              const Icon = template.icon;
+              return (
+                <StaggerItem key={template.title}>
+                  <motion.div
+                    whileHover={{ y: -5 }}
+                    transition={{ duration: 0.25 }}
+                    className="group cursor-pointer rounded-[20px] border border-border bg-paper overflow-hidden shadow-sm hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-ink/15 transition-all h-full flex flex-col"
+                  >
+                    <div className="relative h-[120px] overflow-hidden">
+                      <Image
+                        src={template.image}
+                        alt={template.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className={`absolute inset-0 bg-gradient-to-t ${template.accent}`} />
+                      <div className={`absolute bottom-3 left-3 w-8 h-8 rounded-[10px] ${template.iconBg} text-white flex items-center justify-center shadow-md`}>
+                        <Icon size={15} weight="fill" />
+                      </div>
+                    </div>
+                    <div className="p-4 flex flex-col gap-1.5 flex-1">
+                      <p className="text-[14px] font-semibold text-ink tracking-tight">{template.title}</p>
+                      <p className="text-[12px] text-ink-muted leading-relaxed">{template.description}</p>
+                      <span className="mt-auto pt-3 text-[12px] font-semibold text-ink-muted group-hover:text-ink flex items-center gap-1 transition-colors">
+                        Use template <ArrowRight size={12} weight="bold" className="transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </motion.div>
+                </StaggerItem>
+              );
+            })}
           </Stagger>
         </FadeIn>
       </div>
