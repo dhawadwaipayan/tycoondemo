@@ -91,7 +91,7 @@ export default function HomePage() {
         {/* Agent Updates */}
       <section className="space-y-6">
         <div className="flex items-center justify-between">
-          <h2 className="text-xl font-sans font-semibold tracking-tight text-ink">What's happening now</h2>
+          <h2 className="text-xl font-semibold tracking-tight text-ink">What's happening now</h2>
           <button className="text-[14px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
             View all <ArrowRight size={14} weight="bold" />
           </button>
@@ -225,7 +225,7 @@ export default function HomePage() {
           {/* Waiting on You */}
         <section className="lg:col-span-1 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-sans font-semibold tracking-tight text-ink">Waiting on you</h2>
+            <h2 className="text-lg font-semibold tracking-tight text-ink">Waiting on you</h2>
           </div>
             <div className="space-y-3">
               {[
@@ -252,7 +252,7 @@ export default function HomePage() {
           {/* Kanban Panel */}
         <section className="lg:col-span-2 space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-sans font-semibold tracking-tight text-ink-muted">Work board</h2>
+            <h2 className="text-lg font-semibold tracking-tight text-ink-muted">Work board</h2>
             <button className="text-[13px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
               View all <ArrowRight size={12} weight="bold" />
             </button>
