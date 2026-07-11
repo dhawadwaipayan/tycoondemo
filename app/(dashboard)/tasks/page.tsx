@@ -166,13 +166,44 @@ export default function TasksPage() {
         />
 
         {/* Header */}
-        <header className="h-[52px] flex items-center justify-between px-4 bg-transparent z-20 shrink-0 relative">
-          <div className="flex items-center gap-3">
-            <h1 className="text-[20px] font-display font-medium tracking-tight text-ink">All tasks</h1>
-            <span className="text-[13px] text-ink-muted font-medium bg-[#F8F9FA]/80 backdrop-blur-sm px-2 py-0.5 rounded-md border border-border/50">{tasksData.length}</span>
+        <header className="h-[52px] border-b border-border/60 flex items-center justify-between bg-transparent z-20 shrink-0 relative px-2">
+          {/* Left Tabs */}
+          <div className="flex h-full items-end gap-1 px-1 pt-1.5">
+            
+            {/* Active Tab: All Tasks */}
+            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 bg-[#F8F9FA] border border-border/50 border-b-[#F8F9FA] rounded-t-[10px] min-w-[140px] max-w-[200px] cursor-pointer translate-y-[1px]">
+               <Kanban size={16} className="text-ink shrink-0" weight="fill" />
+               <span className="text-[13px] font-medium text-ink truncate flex-1">All tasks</span>
+               <span className="text-[11px] font-bold text-ink-muted bg-white px-1.5 py-0.5 rounded border border-border/50">{tasksData.length}</span>
+               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#F8F9FA] to-transparent rounded-tr-[10px] pointer-events-none group-hover:opacity-0 transition-opacity" />
+            </div>
+
+            {/* Inactive Tab 1: WilowAI Launch */}
+            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/60 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
+               <div className="w-[16px] h-[16px] rounded bg-blue-100 flex items-center justify-center shrink-0 border border-blue-200">
+                  <span className="text-[9px] font-bold text-blue-600">W</span>
+               </div>
+               <span className="text-[13px] font-medium truncate flex-1">WilowAI Launch</span>
+               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+                 <X size={12} weight="bold" />
+               </button>
+               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-transparent group-hover:from-[#F8F9FA]/60 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
+            </div>
+
+            {/* Inactive Tab 2: Marketing Prep */}
+            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/60 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
+               <div className="w-[16px] h-[16px] rounded bg-purple-100 flex items-center justify-center shrink-0 border border-purple-200">
+                  <span className="text-[9px] font-bold text-purple-600">M</span>
+               </div>
+               <span className="text-[13px] font-medium truncate flex-1">Marketing Prep</span>
+               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+                 <X size={12} weight="bold" />
+               </button>
+               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-transparent group-hover:from-[#F8F9FA]/60 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
+            </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 h-full">
             <div className="flex items-center bg-[#F8F9FA] border border-border/50 rounded-[14px] p-1 shadow-sm">
               <button 
                 onClick={() => setView("board")}
