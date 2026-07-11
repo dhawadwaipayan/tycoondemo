@@ -8,6 +8,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { clsx } from "clsx";
+import { motion, AnimatePresence } from "framer-motion";
 
 const tasksData = [
   { id: "1", title: "Brand ads copy refresh", assignee: "casey", assigneeName: "Amelia Grant", date: "n/a", priority: "Low priority", status: "backlog", timeframe: "1d" },
@@ -84,7 +85,12 @@ export default function TasksPage() {
     <div className="flex-1 flex overflow-hidden bg-paper">
       
       {/* Context Panel: Filters */}
-      <div className="w-[280px] flex-shrink-0 border-r border-border bg-paper flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="w-[280px] flex-shrink-0 border-r border-border bg-paper flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]"
+      >
         <div className="p-4 pt-5 pb-3">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[20px] font-display font-bold tracking-tight text-ink">Tasks</h2>
@@ -147,10 +153,15 @@ export default function TasksPage() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Workspace: Board */}
-      <div className="flex-1 flex flex-col bg-[#F8F9FA] overflow-hidden min-w-0 relative">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+        className="flex-1 flex flex-col bg-[#F8F9FA] overflow-hidden min-w-0 relative"
+      >
         
         {/* Stylized lined sepia gradient background */}
         <div 
@@ -265,11 +276,15 @@ export default function TasksPage() {
                   {/* Cards */}
                   <div className="flex-1 overflow-y-auto space-y-3 pb-4 scrollbar-hide px-1">
                     {columnTasks.map(task => (
-                      <div 
+                      <motion.div 
                         key={task.id} 
                         onClick={() => handleTaskClick(task)}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                        whileHover={{ y: -2, boxShadow: "0 8px 20px rgba(0,0,0,0.06)" }}
                         className={clsx(
-                          "bg-white border rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer group flex flex-col gap-3 transition-all",
+                          "bg-white border rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] cursor-pointer group flex flex-col gap-3 transition-colors",
                           column.border,
                           selectedTask?.id === task.id ? "ring-2 ring-blue-500/20" : ""
                         )}
@@ -302,7 +317,7 @@ export default function TasksPage() {
                             <span className="font-medium">{task.priority}</span>
                           </div>
                         </div>
-                      </div>
+                      </motion.div>
                     ))}
 
                     {/* Add New Button */}
@@ -315,11 +330,16 @@ export default function TasksPage() {
             })}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Right Context Inspector */}
+      <AnimatePresence>
       {isRightPanelOpen && (
-        <div 
+        <motion.div 
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 24 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="flex-shrink-0 flex flex-col h-full bg-paper border-l border-border relative z-20 shadow-[-4px_0_24px_rgba(0,0,0,0.02)]"
           style={{ width: `${rightPanelWidth}px` }}
         >
@@ -428,8 +448,9 @@ export default function TasksPage() {
               </div>
             )}
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 }

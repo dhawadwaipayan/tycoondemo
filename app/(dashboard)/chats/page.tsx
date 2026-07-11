@@ -13,6 +13,7 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { clsx } from "clsx";
+import { motion, AnimatePresence } from "framer-motion";
 
 const agents = [
   { name: "Indie", role: "Design Lead", img: "indie" },
@@ -56,7 +57,12 @@ export default function ChatsPage() {
     <div className="flex-1 flex overflow-hidden bg-paper">
       
       {/* Context Panel: Chat List */}
-      <div className="w-[300px] flex-shrink-0 border-r border-border bg-paper flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]">
+      <motion.div
+        initial={{ opacity: 0, x: -12 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+        className="w-[300px] flex-shrink-0 border-r border-border bg-paper flex flex-col h-full z-10 shadow-[2px_0_10px_rgba(0,0,0,0.02)]"
+      >
         <div className="p-4 pt-5 pb-3">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-[20px] font-display font-bold tracking-tight text-ink">Chats</h2>
@@ -138,10 +144,15 @@ export default function ChatsPage() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Main Workspace: Chat Area */}
-      <div className="flex-1 flex flex-col bg-[#F8F9FA] relative min-w-0">
+      <motion.div
+        initial={{ opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45, delay: 0.08, ease: [0.22, 1, 0.36, 1] }}
+        className="flex-1 flex flex-col bg-[#F8F9FA] relative min-w-0"
+      >
         
         {/* Stylized lined mint green gradient background */}
         <div 
@@ -408,11 +419,16 @@ export default function ChatsPage() {
             <div className="w-[58px] shrink-0" /> {/* Spacer for right alignment */}
           </div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Document Editor Panel (Right) */}
+      <AnimatePresence>
       {isRightPanelOpen && (
-        <div 
+        <motion.div 
+          initial={{ opacity: 0, x: 24 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: 24 }}
+          transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
           className="flex-shrink-0 bg-paper border-l border-border flex flex-col h-full z-20 shadow-2xl relative"
           style={{ width: `${rightPanelWidth}px`, transition: isResizingRight.current ? 'none' : 'width 300ms ease-in-out' }}
         >
@@ -530,8 +546,9 @@ export default function ChatsPage() {
               />
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
 
     </div>
   );

@@ -4,6 +4,7 @@ import { Sidebar } from "@/components/layout/Sidebar";
 import { SidebarSimple, CaretUpDown, ChatCircleDots, UploadSimple, DotsThreeVertical } from "@phosphor-icons/react/dist/ssr";
 import { useState, useEffect } from "react";
 import { usePathname } from "next/navigation";
+import { AnimatePresence, motion } from "framer-motion";
 
 export default function DashboardLayout({
   children,
@@ -44,7 +45,7 @@ export default function DashboardLayout({
                 <div className="w-5 h-5 rounded-full bg-ink text-paper flex items-center justify-center text-[10px] font-bold">
                   D
                 </div>
-                <span className="font-medium">dwaipayan's org</span>
+                <span className="font-medium">dwaipayan&apos;s org</span>
                 <CaretUpDown size={14} className="text-ink-muted" />
               </button>
             </div>
@@ -64,8 +65,19 @@ export default function DashboardLayout({
           </div>
         </header>
 
-        <main className="flex-1 flex overflow-hidden bg-paper border border-border border-b-0 rounded-b-none">
-          {children}
+        <main className="flex-1 flex overflow-hidden bg-paper border border-border border-b-0 rounded-b-none relative">
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={pathname}
+              className="flex-1 flex overflow-hidden min-w-0 h-full"
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+            >
+              {children}
+            </motion.div>
+          </AnimatePresence>
         </main>
       </div>
     </div>
