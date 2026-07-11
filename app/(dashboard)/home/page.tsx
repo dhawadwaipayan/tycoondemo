@@ -230,38 +230,38 @@ export default function HomePage() {
             
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {/* Backlog */}
-            <div className="bg-paper border border-border/50 p-4 rounded-2xl shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div className="bg-paper border border-border/40 p-4 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3 px-1 mb-1">
-                <span className="px-2.5 py-1 rounded-md text-[13px] font-medium bg-purple-100 text-purple-700">Backlog</span>
+                <span className="px-3 py-1.5 rounded-lg text-[13px] font-semibold bg-purple-100 text-purple-700">Backlog</span>
                 <span className="text-[14px] font-medium text-ink-muted">2</span>
               </div>
               
               <div className="flex flex-col gap-3">
                 {/* Card 1 */}
-                <div className="bg-white border border-purple-200 rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer transition-all flex flex-col gap-3">
+                <div className="border border-purple-200/70 rounded-[16px] p-4 cursor-pointer hover:border-purple-300 transition-colors flex flex-col gap-4">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">Brand ads copy refresh</p>
-                    <div className="flex items-center gap-1 text-ink-muted text-[12px] shrink-0 mt-0.5">
-                      <Clock size={14} /> <span>1d</span>
+                    <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
+                      <Clock size={15} /> <span>1d</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-[13px] text-ink-muted mt-1">
-                    <div className="w-5 h-5 rounded-full overflow-hidden relative border border-border/50">
+                  <div className="flex items-center gap-2.5 text-[13px] text-ink-muted">
+                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50">
                       <Image src="/avatars/casey.png" alt="Casey" fill className="object-cover" />
                     </div>
                     <span className="font-medium text-ink">Amelia Grant</span>
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="bg-white border border-purple-200 rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer transition-all flex flex-col gap-3">
+                <div className="border border-purple-200/70 rounded-[16px] p-4 cursor-pointer hover:border-purple-300 transition-colors flex flex-col gap-4">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">"Leave work at work" billboards</p>
-                    <div className="flex items-center gap-1 text-ink-muted text-[12px] shrink-0 mt-0.5">
-                      <Clock size={14} /> <span>6d</span>
+                    <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
+                      <Clock size={15} /> <span>6d</span>
                     </div>
                   </div>
-                  <div className="flex items-center gap-2 text-[13px] text-ink-muted mt-1">
-                    <div className="w-5 h-5 rounded-full overflow-hidden relative border border-border/50">
+                  <div className="flex items-center gap-2.5 text-[13px] text-ink-muted">
+                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50">
                       <Image src="/avatars/darren.png" alt="Darren" fill className="object-cover" />
                     </div>
                     <span className="font-medium text-ink">Daniel Foster</span>
@@ -271,81 +271,81 @@ export default function HomePage() {
             </div>
 
             {/* In Progress */}
-            <div className="bg-paper border border-border/50 p-4 rounded-2xl shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div className="bg-paper border border-border/40 p-4 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3 px-1 mb-1">
-                <span className="px-2.5 py-1 rounded-md text-[13px] font-medium bg-orange-100 text-orange-700">In Progress</span>
+                <span className="px-3 py-1.5 rounded-lg text-[13px] font-semibold bg-orange-100 text-orange-700">In Progress</span>
                 <span className="text-[14px] font-medium text-ink-muted">3</span>
               </div>
               
               <div className="flex flex-col gap-3">
                 {/* Card 1 */}
-                <div className="bg-white border border-orange-200 rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer transition-all flex flex-col gap-3">
+                <div className="border border-orange-200/70 rounded-[16px] p-4 cursor-pointer hover:border-orange-300 transition-colors flex flex-col gap-4">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">BFCM campaign</p>
-                    <div className="flex items-center gap-1 text-ink-muted text-[12px] shrink-0 mt-0.5">
-                      <Clock size={14} /> <span>3d</span>
+                    <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
+                      <Clock size={15} /> <span>3d</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-1">
-                    <div className="flex items-center gap-2 text-[13px] text-ink-muted">
-                      <div className="w-5 h-5 rounded-full overflow-hidden relative border border-border/50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 text-[13px] text-ink-muted">
+                      <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50">
                         <Image src="/avatars/jordan.png" alt="Jordan" fill className="object-cover" />
                       </div>
                       <span className="font-medium text-ink">Benjamin Ortiz</span>
                     </div>
-                    <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 border border-orange-200 px-1.5 py-0.5 rounded-md">High</span>
+                    <span className="text-[11px] font-semibold text-orange-600 bg-orange-50 border border-orange-200/60 px-2 py-0.5 rounded-md">High</span>
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="bg-white border border-orange-200 rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer transition-all flex flex-col gap-3">
+                <div className="border border-orange-200/70 rounded-[16px] p-4 cursor-pointer hover:border-orange-300 transition-colors flex flex-col gap-4">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">Influencer promotions</p>
-                    <div className="flex items-center gap-1 text-ink-muted text-[12px] shrink-0 mt-0.5">
-                      <Clock size={14} /> <span>2d</span>
+                    <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
+                      <Clock size={15} /> <span>2d</span>
                     </div>
                   </div>
-                  <div className="flex items-center justify-between mt-1">
-                    <div className="flex items-center gap-2 text-[13px] text-ink-muted">
-                      <div className="w-5 h-5 rounded-full overflow-hidden relative border border-border/50">
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-2.5 text-[13px] text-ink-muted">
+                      <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50">
                         <Image src="/avatars/indie.png" alt="Indie" fill className="object-cover" />
                       </div>
                       <span className="font-medium text-ink">Ruby Gallagher</span>
                     </div>
-                    <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 border border-orange-200 px-1.5 py-0.5 rounded-md">High</span>
+                    <span className="text-[11px] font-semibold text-orange-600 bg-orange-50 border border-orange-200/60 px-2 py-0.5 rounded-md">High</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Done */}
-            <div className="bg-paper border border-border/50 p-4 rounded-2xl shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div className="bg-paper border border-border/40 p-4 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3 px-1 mb-1">
-                <span className="px-2.5 py-1 rounded-md text-[13px] font-medium bg-emerald-100 text-emerald-700">Done</span>
+                <span className="px-3 py-1.5 rounded-lg text-[13px] font-semibold bg-emerald-100 text-emerald-700">Done</span>
                 <span className="text-[14px] font-medium text-ink-muted">2</span>
               </div>
               
               <div className="flex flex-col gap-3 opacity-60">
                 {/* Card 1 */}
-                <div className="bg-white border border-emerald-200 rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer transition-all flex flex-col gap-3">
+                <div className="border border-emerald-200/70 rounded-[16px] p-4 cursor-pointer hover:border-emerald-300 transition-colors flex flex-col gap-4">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink-muted line-through leading-snug">Grand central poster</p>
-                    <CheckCircle size={16} className="text-emerald-500 shrink-0 mt-0.5" weight="fill" />
+                    <CheckCircle size={18} className="text-emerald-500 shrink-0" weight="fill" />
                   </div>
-                  <div className="flex items-center gap-2 text-[13px] text-ink-muted mt-1">
-                    <div className="w-5 h-5 rounded-full overflow-hidden relative border border-border/50">
+                  <div className="flex items-center gap-2.5 text-[13px] text-ink-muted">
+                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50">
                       <Image src="/avatars/darren.png" alt="Darren" fill className="object-cover" />
                     </div>
                     <span className="font-medium">Caleb Smith</span>
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="bg-white border border-emerald-200 rounded-[12px] p-3 shadow-[0_2px_8px_rgba(0,0,0,0.02)] hover:shadow-md cursor-pointer transition-all flex flex-col gap-3">
+                <div className="border border-emerald-200/70 rounded-[16px] p-4 cursor-pointer hover:border-emerald-300 transition-colors flex flex-col gap-4">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink-muted line-through leading-snug">Social Easter eggs</p>
-                    <CheckCircle size={16} className="text-emerald-500 shrink-0 mt-0.5" weight="fill" />
+                    <CheckCircle size={18} className="text-emerald-500 shrink-0" weight="fill" />
                   </div>
-                  <div className="flex items-center gap-2 text-[13px] text-ink-muted mt-1">
-                    <div className="w-5 h-5 rounded-full overflow-hidden relative border border-border/50">
+                  <div className="flex items-center gap-2.5 text-[13px] text-ink-muted">
+                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50">
                       <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
                     </div>
                     <span className="font-medium">Caleb Smith</span>
