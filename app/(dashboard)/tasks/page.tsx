@@ -150,10 +150,23 @@ export default function TasksPage() {
       </div>
 
       {/* Main Workspace: Board */}
-      <div className="flex-1 flex flex-col bg-white overflow-hidden min-w-0">
+      <div className="flex-1 flex flex-col bg-[#F8F9FA] overflow-hidden min-w-0 relative">
         
+        {/* Stylized lined mint green gradient background */}
+        <div 
+          className="absolute inset-x-0 top-[52px] bottom-0 pointer-events-none z-0"
+          style={{
+            backgroundImage: `
+              repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.04) 31px, rgba(14, 116, 75, 0.04) 32px),
+              linear-gradient(to bottom, transparent 0%, rgba(157, 224, 185, 0.3) 100%)
+            `,
+            WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)',
+            maskImage: 'linear-gradient(to top, black 30%, transparent 100%)'
+          }}
+        />
+
         {/* Header */}
-        <header className="h-[52px] border-b border-border flex items-center justify-between px-4 bg-paper/80 backdrop-blur-sm z-20 shrink-0">
+        <header className="h-[52px] flex items-center justify-between px-4 bg-paper/80 backdrop-blur-sm z-20 shrink-0">
           <div className="flex items-center gap-3">
             <h1 className="text-[15px] font-semibold tracking-tight text-ink">All tasks</h1>
             <span className="text-[13px] text-ink-muted font-medium bg-[#F8F9FA] px-2 py-0.5 rounded-md border border-border/50">{tasksData.length}</span>
