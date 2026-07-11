@@ -147,10 +147,10 @@ export default function ChatsPage() {
         <div 
           className="absolute inset-x-0 top-[52px] bottom-0 pointer-events-none z-0"
           style={{
-            backgroundImage: `
-              repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.04) 31px, rgba(14, 116, 75, 0.04) 32px),
-              linear-gradient(to bottom, transparent 0%, rgba(157, 224, 185, 0.3) 100%)
-            `,
+                backgroundImage: `
+                  repeating-linear-gradient(to right, transparent, transparent 31px, rgba(112, 66, 20, 0.04) 31px, rgba(112, 66, 20, 0.04) 32px),
+                  linear-gradient(to bottom, transparent 0%, rgba(227, 200, 160, 0.3) 100%)
+                `,
             WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)',
             maskImage: 'linear-gradient(to top, black 30%, transparent 100%)'
           }}

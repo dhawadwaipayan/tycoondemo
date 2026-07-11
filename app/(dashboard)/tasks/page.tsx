@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from "react";
 import { 
   MagnifyingGlass, Plus, Funnel, SortAscending, DotsThree, 
-  Kanban, ListDashes, SidebarSimple, X,
+  Kanban, ListDashes, ListBullets, SidebarSimple, X,
   Clock, User, CalendarBlank, Flag, WarningCircle, CheckCircle, Users, Robot, ClockCounterClockwise
 } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
@@ -157,8 +157,8 @@ export default function TasksPage() {
           className="absolute inset-x-0 top-0 bottom-0 pointer-events-none z-0"
           style={{
             backgroundImage: `
-              repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.04) 31px, rgba(14, 116, 75, 0.04) 32px),
-              linear-gradient(to bottom, transparent 0%, rgba(157, 224, 185, 0.3) 100%)
+              repeating-linear-gradient(to right, transparent, transparent 31px, rgba(112, 66, 20, 0.04) 31px, rgba(112, 66, 20, 0.04) 32px),
+              linear-gradient(to bottom, transparent 0%, rgba(227, 200, 160, 0.3) 100%)
             `,
             WebkitMaskImage: 'linear-gradient(to top, black 30%, transparent 100%)',
             maskImage: 'linear-gradient(to top, black 30%, transparent 100%)'
@@ -173,28 +173,28 @@ export default function TasksPage() {
           </div>
 
           <div className="flex items-center gap-2">
-            <div className="flex items-center bg-[#F8F9FA] border border-border/60 rounded-lg p-0.5 shadow-sm">
+            <div className="flex items-center bg-[#F8F9FA] border border-border/50 rounded-[22px] p-1.5 shadow-sm">
               <button 
                 onClick={() => setView("board")}
                 className={clsx(
-                  "p-1.5 rounded-md transition-colors",
-                  view === "board" ? "bg-white text-ink shadow-[0_1px_3px_rgba(0,0,0,0.05)]" : "text-ink-muted hover:text-ink"
+                  "w-10 h-10 flex items-center justify-center rounded-[16px] transition-all duration-200",
+                  view === "board" ? "bg-white text-ink shadow-[0_2px_8px_rgba(0,0,0,0.06)]" : "text-ink-muted hover:text-ink hover:bg-black/5"
                 )}
               >
-                <Kanban size={16} />
+                <Kanban size={22} weight={view === "board" ? "bold" : "bold"} />
               </button>
               <button 
                 onClick={() => setView("list")}
                 className={clsx(
-                  "p-1.5 rounded-md transition-colors",
-                  view === "list" ? "bg-white text-ink shadow-[0_1px_3px_rgba(0,0,0,0.05)]" : "text-ink-muted hover:text-ink"
+                  "w-10 h-10 flex items-center justify-center rounded-[16px] transition-all duration-200",
+                  view === "list" ? "bg-white text-ink shadow-[0_2px_8px_rgba(0,0,0,0.06)]" : "text-ink-muted hover:text-ink hover:bg-black/5"
                 )}
               >
-                <ListDashes size={16} />
+                <ListBullets size={22} weight={view === "list" ? "bold" : "bold"} />
               </button>
             </div>
             
-            <div className="h-4 w-px bg-border mx-1" />
+            <div className="h-4 w-px bg-border mx-2" />
             
             <button className="flex items-center gap-1.5 px-2.5 py-1.5 text-ink-muted hover:text-ink hover:bg-[#F8F9FA] rounded-md transition-colors text-[13px] font-medium">
               <Funnel size={16} /> Filter
@@ -245,7 +245,7 @@ export default function TasksPage() {
                       >
                         {/* Title and Time */}
                         <div className="flex justify-between items-start gap-2">
-                          <h4 className="text-[14px] font-semibold text-ink leading-snug group-hover:text-blue-600 transition-colors">{task.title}</h4>
+                          <p className="text-[14px] font-semibold text-ink leading-snug group-hover:text-blue-600 transition-colors">{task.title}</p>
                           {task.timeframe && (
                             <div className="flex items-center gap-1 text-ink-muted text-[12px] shrink-0 mt-0.5">
                               <Clock size={14} /> <span>{task.timeframe}</span>
