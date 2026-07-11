@@ -108,7 +108,7 @@ export default function ChatsPage() {
               <button className="w-full flex items-center gap-3 p-2 px-3 rounded-2xl hover:bg-[#F8F9FA] text-left transition-colors group">
                 <div className="w-[42px] h-[42px] rounded-full bg-paper-elevated border border-border/50 text-ink flex items-center justify-center group-hover:border-ink/20 transition-colors"><Users size={20} weight="fill" className="text-ink-muted" /></div>
                 <div className="flex-1 overflow-hidden">
-                  <p className="text-[14px] font-bold text-ink">WilowAI Launch</p>
+                  <p className="text-[14px] font-bold text-ink">AcmeAI Launch</p>
                   <p className="text-[13px] text-ink-muted truncate">Indie: Logo concepts ready</p>
                 </div>
               </button>
@@ -241,7 +241,7 @@ export default function ChatsPage() {
             {/* User Message */}
             <div className="flex justify-end pr-[58px]">
               <div className="bg-ink text-paper px-5 py-3.5 rounded-[20px] rounded-tr-[4px] max-w-[700px] shadow-sm">
-                <p className="text-[15px] leading-relaxed">Create a launch plan for WilowAI.</p>
+                <p className="text-[15px] leading-relaxed">Create a launch plan for AcmeAI.</p>
               </div>
             </div>
 
@@ -446,7 +446,7 @@ export default function ChatsPage() {
           <div className="h-[52px] flex items-end pl-3 pr-1 bg-paper border-b border-border shrink-0">
              <div className="flex items-center gap-2 bg-[#F8F9FA] h-[38px] pl-3 pr-2 rounded-t-[10px] border border-border/50 border-b-[#F8F9FA] text-[13px] text-ink font-medium translate-y-[1px] min-w-[180px]">
                <FileText size={16} className="text-blue-500 shrink-0" weight="fill" />
-               <span className="truncate flex-1">wilow_planning_r...</span>
+               <span className="truncate flex-1">acme_planning_r...</span>
                <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors"><X size={12} weight="bold" /></button>
              </div>
              <button className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md mb-1.5 ml-1 transition-colors"><Plus size={16} /></button>
@@ -466,7 +466,7 @@ export default function ChatsPage() {
           {/* Toolbar */}
           <div className="h-[48px] flex items-center justify-between px-4 shrink-0 border-b border-border bg-[#F8F9FA]">
             <div className="flex items-center gap-3">
-              <span className="text-[14px] font-medium text-ink tracking-wide">wilow_planning_report</span>
+              <span className="text-[14px] font-medium text-ink tracking-wide">acme_planning_report</span>
               <span className="text-[10px] font-bold text-ink-muted bg-paper-elevated border border-border/50 px-1.5 py-0.5 rounded tracking-wider">DOC</span>
             </div>
             <div className="flex items-center gap-3">

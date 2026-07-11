@@ -223,7 +223,7 @@ export default function HomePage() {
                 </div>
                 <div className="bg-[#F8F9FA] rounded-[16px] p-4 flex flex-col flex-1 border border-border/40 mx-1 mb-1">
                   <p className="font-bold text-[15px] text-ink mb-1">Logo concepts ready</p>
-                  <p className="text-[14px] text-ink-muted leading-relaxed line-clamp-2">Generated 3 visual directions for the WilowAI brand launch.</p>
+                  <p className="text-[14px] text-ink-muted leading-relaxed line-clamp-2">Generated 3 visual directions for the AcmeAI brand launch.</p>
                   <div className="mt-auto pt-4">
                     <button className="text-[14px] font-bold text-ink flex items-center gap-1.5 hover:underline">
                       View <ArrowRight size={14} weight="bold" />

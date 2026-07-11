@@ -189,12 +189,12 @@ export default function TasksPage() {
                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#F8F9FA] to-transparent rounded-tr-[10px] pointer-events-none group-hover:opacity-0 transition-opacity" />
             </div>
 
-            {/* Inactive Tab 1: WilowAI Launch */}
+            {/* Inactive Tab 1: AcmeAI Launch */}
             <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/50 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
                <div className="w-[16px] h-[16px] rounded bg-blue-100 flex items-center justify-center shrink-0 border border-blue-200 opacity-70 group-hover:opacity-100 transition-opacity">
                   <span className="text-[9px] font-bold text-blue-600">W</span>
                </div>
-               <span className="text-[13px] font-medium truncate flex-1">WilowAI Launch</span>
+               <span className="text-[13px] font-medium truncate flex-1">AcmeAI Launch</span>
                <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10 relative">
                  <X size={12} weight="bold" />
                </button>

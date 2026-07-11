@@ -134,12 +134,12 @@ export function Sidebar({ isCollapsed }: { isCollapsed?: boolean }) {
               
               <button className="w-full flex items-center gap-3 py-1.5 rounded-[6px] transition-colors text-[14px] font-medium px-3 text-ink-muted hover:text-ink hover:bg-paper-elevated/50">
                 <Robot size={18} weight="fill" className="text-purple-600 shrink-0" />
-                <span className="truncate">CotonAI Capabilities Overview</span>
+                <span className="truncate">AcmeAI Capabilities Overview</span>
               </button>
               
               <button className="w-full flex items-center gap-3 py-1.5 rounded-[6px] transition-colors text-[14px] font-medium px-3 text-ink-muted hover:text-ink hover:bg-paper-elevated/50">
                 <RocketLaunch size={18} weight="fill" className="text-indigo-600 shrink-0" />
-                <span className="truncate">CotonAI Presentation</span>
+                <span className="truncate">AcmeAI Presentation</span>
               </button>
             </div>
           </>
