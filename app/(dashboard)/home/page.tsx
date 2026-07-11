@@ -228,9 +228,9 @@ export default function HomePage() {
             </button>
           </div>
             
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Backlog */}
-            <div className="bg-paper border border-border/40 p-4 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div className="bg-paper p-5 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3 px-1 mb-1">
                 <span className="px-3 py-1.5 rounded-lg text-[13px] font-semibold bg-purple-100 text-purple-700">Backlog</span>
                 <span className="text-[14px] font-medium text-ink-muted">2</span>
@@ -238,7 +238,7 @@ export default function HomePage() {
               
               <div className="flex flex-col gap-3">
                 {/* Card 1 */}
-                <div className="border border-purple-200/70 rounded-[16px] p-4 cursor-pointer hover:border-purple-300 transition-colors flex flex-col gap-4">
+                <div className="bg-white border border-purple-200/70 rounded-[16px] p-4 cursor-pointer hover:border-purple-300 transition-colors flex flex-col gap-4 w-full">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">Brand ads copy refresh</p>
                     <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
@@ -253,7 +253,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="border border-purple-200/70 rounded-[16px] p-4 cursor-pointer hover:border-purple-300 transition-colors flex flex-col gap-4">
+                <div className="bg-white border border-purple-200/70 rounded-[16px] p-4 cursor-pointer hover:border-purple-300 transition-colors flex flex-col gap-4 w-full">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">"Leave work at work" billboards</p>
                     <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
@@ -271,7 +271,7 @@ export default function HomePage() {
             </div>
 
             {/* In Progress */}
-            <div className="bg-paper border border-border/40 p-4 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div className="bg-paper p-5 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3 px-1 mb-1">
                 <span className="px-3 py-1.5 rounded-lg text-[13px] font-semibold bg-orange-100 text-orange-700">In Progress</span>
                 <span className="text-[14px] font-medium text-ink-muted">3</span>
@@ -279,7 +279,7 @@ export default function HomePage() {
               
               <div className="flex flex-col gap-3">
                 {/* Card 1 */}
-                <div className="border border-orange-200/70 rounded-[16px] p-4 cursor-pointer hover:border-orange-300 transition-colors flex flex-col gap-4">
+                <div className="bg-white border border-orange-200/70 rounded-[16px] p-4 cursor-pointer hover:border-orange-300 transition-colors flex flex-col gap-4 w-full">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">BFCM campaign</p>
                     <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
@@ -297,7 +297,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="border border-orange-200/70 rounded-[16px] p-4 cursor-pointer hover:border-orange-300 transition-colors flex flex-col gap-4">
+                <div className="bg-white border border-orange-200/70 rounded-[16px] p-4 cursor-pointer hover:border-orange-300 transition-colors flex flex-col gap-4 w-full">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink leading-snug">Influencer promotions</p>
                     <div className="flex items-center gap-1 text-ink-muted text-[13px] shrink-0 mt-0.5">
@@ -318,7 +318,7 @@ export default function HomePage() {
             </div>
 
             {/* Done */}
-            <div className="bg-paper border border-border/40 p-4 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
+            <div className="bg-paper p-5 rounded-[24px] shadow-sm flex flex-col gap-4 relative overflow-hidden">
               <div className="flex items-center gap-3 px-1 mb-1">
                 <span className="px-3 py-1.5 rounded-lg text-[13px] font-semibold bg-emerald-100 text-emerald-700">Done</span>
                 <span className="text-[14px] font-medium text-ink-muted">2</span>
@@ -326,7 +326,7 @@ export default function HomePage() {
               
               <div className="flex flex-col gap-3 opacity-60">
                 {/* Card 1 */}
-                <div className="border border-emerald-200/70 rounded-[16px] p-4 cursor-pointer hover:border-emerald-300 transition-colors flex flex-col gap-4">
+                <div className="bg-white border border-emerald-200/70 rounded-[16px] p-4 cursor-pointer hover:border-emerald-300 transition-colors flex flex-col gap-4 w-full">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink-muted line-through leading-snug">Grand central poster</p>
                     <CheckCircle size={18} className="text-emerald-500 shrink-0" weight="fill" />
@@ -339,7 +339,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 {/* Card 2 */}
-                <div className="border border-emerald-200/70 rounded-[16px] p-4 cursor-pointer hover:border-emerald-300 transition-colors flex flex-col gap-4">
+                <div className="bg-white border border-emerald-200/70 rounded-[16px] p-4 cursor-pointer hover:border-emerald-300 transition-colors flex flex-col gap-4 w-full">
                   <div className="flex justify-between items-start gap-2">
                     <p className="text-[14px] font-semibold text-ink-muted line-through leading-snug">Social Easter eggs</p>
                     <CheckCircle size={18} className="text-emerald-500 shrink-0" weight="fill" />
