@@ -1,6 +1,6 @@
 "use client";
 
-import { Sparkle, ArrowRight, CheckCircle, ClockCounterClockwise, StopCircle, MagnifyingGlass, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, Star, Robot, RocketLaunch, Crown, Palette, BookOpen, Terminal } from "@phosphor-icons/react/dist/ssr";
+import { Sparkle, ArrowRight, CheckCircle, ClockCounterClockwise, StopCircle, MagnifyingGlass, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, Star, Robot, RocketLaunch, Crown, Palette, BookOpen, Terminal, Clock } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { clsx } from "clsx";
 
