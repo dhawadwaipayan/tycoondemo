@@ -89,10 +89,13 @@ export default function HomePage() {
         </section>
 
         {/* Agent Updates */}
-        <section className="space-y-4">
-          <div className="flex items-center justify-between">
-            <h2 className="text-display-md lowercase tracking-tight">what's happening now</h2>
-          </div>
+      <section className="space-y-6">
+        <div className="flex items-center justify-between">
+          <h2 className="text-xl font-semibold tracking-tight text-ink">What's happening now</h2>
+          <button className="text-[14px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
+            View all <ArrowRight size={14} weight="bold" />
+          </button>
+        </div>
           
           <div className="flex gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide">
             {/* Astra Card */}
@@ -220,10 +223,10 @@ export default function HomePage() {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Waiting on You */}
-          <section className="lg:col-span-1 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-display-sm lowercase">waiting on you</h2>
-            </div>
+        <section className="lg:col-span-1 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold tracking-tight text-ink">Waiting on you</h2>
+          </div>
             <div className="space-y-3">
               {[
                 { decision: "Choose logo direction", by: "Indie", reason: "Needed before Darren starts landing page build", due: "Today" },
@@ -247,13 +250,13 @@ export default function HomePage() {
           </section>
 
           {/* Kanban Panel */}
-          <section className="lg:col-span-2 space-y-4">
-            <div className="flex items-center justify-between">
-              <h2 className="text-display-sm lowercase text-ink-muted">work board</h2>
-              <button className="text-[13px] font-semibold flex items-center gap-1 hover:underline">
-                View all <ArrowRight size={12} weight="bold" />
-              </button>
-            </div>
+        <section className="lg:col-span-2 space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-lg font-semibold tracking-tight text-ink-muted">Work board</h2>
+            <button className="text-[13px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
+              View all <ArrowRight size={12} weight="bold" />
+            </button>
+          </div>
             
             <div className="grid grid-cols-2 gap-4">
               {/* In Progress Column */}
