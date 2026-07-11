@@ -154,7 +154,7 @@ export default function TasksPage() {
         
         {/* Stylized lined mint green gradient background */}
         <div 
-          className="absolute inset-x-0 top-[52px] bottom-0 pointer-events-none z-0"
+          className="absolute inset-x-0 top-0 bottom-0 pointer-events-none z-0"
           style={{
             backgroundImage: `
               repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.04) 31px, rgba(14, 116, 75, 0.04) 32px),
@@ -166,10 +166,10 @@ export default function TasksPage() {
         />
 
         {/* Header */}
-        <header className="h-[52px] flex items-center justify-between px-4 bg-paper/80 backdrop-blur-sm z-20 shrink-0">
+        <header className="h-[52px] flex items-center justify-between px-4 bg-transparent z-20 shrink-0 relative">
           <div className="flex items-center gap-3">
-            <h1 className="text-[15px] font-semibold tracking-tight text-ink">All tasks</h1>
-            <span className="text-[13px] text-ink-muted font-medium bg-[#F8F9FA] px-2 py-0.5 rounded-md border border-border/50">{tasksData.length}</span>
+            <h1 className="text-[20px] font-display font-medium tracking-tight text-ink">All tasks</h1>
+            <span className="text-[13px] text-ink-muted font-medium bg-[#F8F9FA]/80 backdrop-blur-sm px-2 py-0.5 rounded-md border border-border/50">{tasksData.length}</span>
           </div>
 
           <div className="flex items-center gap-2">
@@ -245,7 +245,7 @@ export default function TasksPage() {
                       >
                         {/* Title and Time */}
                         <div className="flex justify-between items-start gap-2">
-                          <h4 className="text-[14px] font-medium text-ink leading-snug">{task.title}</h4>
+                          <h4 className="text-[14px] font-semibold text-ink leading-snug group-hover:text-blue-600 transition-colors">{task.title}</h4>
                           {task.timeframe && (
                             <div className="flex items-center gap-1 text-ink-muted text-[12px] shrink-0 mt-0.5">
                               <Clock size={14} /> <span>{task.timeframe}</span>
@@ -260,15 +260,15 @@ export default function TasksPage() {
                             <div className="w-5 h-5 rounded-full overflow-hidden relative">
                               <Image src={`/avatars/${task.assignee}.png`} alt={task.assigneeName} fill className="object-cover" />
                             </div>
-                            <span className="text-ink">{task.assigneeName}</span>
+                            <span className="text-ink font-medium">{task.assigneeName}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-[13px] text-ink-muted">
-                            <CalendarBlank size={15} />
-                            <span>{task.date}</span>
+                          <div className="flex items-center gap-2 text-[12px] text-ink-muted">
+                            <CalendarBlank size={14} />
+                            <span className="font-medium">{task.date}</span>
                           </div>
-                          <div className="flex items-center gap-2 text-[13px] text-ink-muted">
-                            <Flag size={15} />
-                            <span>{task.priority}</span>
+                          <div className="flex items-center gap-2 text-[12px] text-ink-muted">
+                            <Flag size={14} />
+                            <span className="font-medium">{task.priority}</span>
                           </div>
                         </div>
                       </div>
