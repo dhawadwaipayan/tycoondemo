@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, Clock } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, CheckCircle, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, Clock, DotsThree } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Typewriter, useTypewriterPlaceholder } from "@/components/motion/Typewriter";
 import { FadeIn, Stagger, StaggerItem } from "@/components/motion/PageMotion";
@@ -45,6 +45,102 @@ const quickActions = [
   { label: "Calendar", icon: Calendar, color: "text-red-400", weight: "fill" as const },
   { label: "Timeline", icon: ListDashes, color: "text-gray-400", weight: "bold" as const },
   { label: "Checklist", icon: CheckSquare, color: "text-emerald-600", weight: "fill" as const },
+];
+
+/** Pastel outer + white nested card — reference styling for "What's happening" */
+const happeningCards = [
+  {
+    name: "Astra",
+    role: "AI CEO",
+    avatar: "/avatars/astra.png",
+    tasksOngoing: 12,
+    shell: "bg-[#EEF5F0] border-[#D0E3D6]",
+    label: "text-[#3D6B52]",
+    iconBtn: "text-[#3D6B52]/70 hover:text-[#3D6B52] hover:bg-[#3D6B52]/8",
+    taskBadge: "bg-white/80 text-[#3D6B52] border-[#D0E3D6]",
+    tags: [
+      { label: "Needs you", className: "bg-[#D8EBE0] text-[#3D6B52]" },
+      { label: "Decisions", className: "bg-[#D8EBE0]/70 text-[#3D6B52]" },
+    ],
+    title: "3 decisions need review",
+    body: (
+      <>
+        Waiting on your input for{" "}
+        <span className="bg-[#D8EBE0] px-1 rounded-[3px]">Q3 planning</span>
+        {" "}and budget before the team can move.
+      </>
+    ),
+    cta: "Review now",
+  },
+  {
+    name: "Indie",
+    role: "Design Lead",
+    avatar: "/avatars/indie.png",
+    tasksOngoing: 4,
+    shell: "bg-[#F6EEF4] border-[#E5D0DE]",
+    label: "text-[#7A4568]",
+    iconBtn: "text-[#7A4568]/70 hover:text-[#7A4568] hover:bg-[#7A4568]/8",
+    taskBadge: "bg-white/80 text-[#7A4568] border-[#E5D0DE]",
+    tags: [
+      { label: "Design", className: "bg-[#EDE0E9] text-[#7A4568]" },
+      { label: "Ready", className: "bg-[#EDE0E9]/70 text-[#7A4568]" },
+    ],
+    title: "Logo concepts ready",
+    body: (
+      <>
+        Generated 3 visual directions for the{" "}
+        <span className="bg-[#EDE0E9] px-1 rounded-[3px]">AcmeAI</span>
+        {" "}brand launch.
+      </>
+    ),
+    cta: "View",
+  },
+  {
+    name: "Riley",
+    role: "Head of Research",
+    avatar: "/avatars/riley.png",
+    tasksOngoing: 1,
+    shell: "bg-[#EEF3F8] border-[#D2DEEA]",
+    label: "text-[#3D5F7A]",
+    iconBtn: "text-[#3D5F7A]/70 hover:text-[#3D5F7A] hover:bg-[#3D5F7A]/8",
+    taskBadge: "bg-white/80 text-[#3D5F7A] border-[#D2DEEA]",
+    tags: [
+      { label: "Research", className: "bg-[#DCE7F0] text-[#3D5F7A]" },
+      { label: "Completed", className: "bg-[#DCE7F0]/70 text-[#3D5F7A]" },
+    ],
+    title: "Research completed",
+    body: (
+      <>
+        Competitor scan and{" "}
+        <span className="bg-[#DCE7F0] px-1 rounded-[3px]">market positioning</span>
+        {" "}memo is now available.
+      </>
+    ),
+    cta: "Read",
+  },
+  {
+    name: "Darren",
+    role: "AI CTO",
+    avatar: "/avatars/darren.png",
+    tasksOngoing: 7,
+    shell: "bg-[#FDF0EB] border-[#F0D5C8]",
+    label: "text-[#9A4F3A]",
+    iconBtn: "text-[#9A4F3A]/70 hover:text-[#9A4F3A] hover:bg-[#9A4F3A]/8",
+    taskBadge: "bg-white/80 text-[#9A4F3A] border-[#F0D5C8]",
+    tags: [
+      { label: "Build", className: "bg-[#F8E0D6] text-[#9A4F3A]" },
+      { label: "Blocked", className: "bg-[#F8E0D6]/70 text-[#9A4F3A]" },
+    ],
+    title: "Build blocked",
+    body: (
+      <>
+        Missing{" "}
+        <span className="bg-[#F8E0D6] px-1 rounded-[3px]">API credentials</span>
+        {" "}required to deploy the landing page.
+      </>
+    ),
+    cta: "Resolve",
+  },
 ];
 
 export default function HomePage() {
@@ -172,126 +268,82 @@ export default function HomePage() {
         </div>
           
           <div className="-mx-5 overflow-x-auto scrollbar-hide">
-            <Stagger className="flex gap-4 px-5 pt-3 pb-7 snap-x" delay={0.1} stagger={0.1}>
-            {/* Astra Card */}
-            <StaggerItem className="snap-start shrink-0">
-              <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 28px rgba(0,0,0,0.06)" }}
-                className="w-[280px] bg-paper border border-border rounded-[24px] p-2 flex flex-col gap-3 shadow-sm cursor-pointer"
-              >
-                <div className="flex items-center gap-3 px-1 pt-1.5">
-                  <div className="w-[52px] h-[52px] rounded-full bg-[#FFF4D4] flex items-center justify-center shrink-0 relative overflow-hidden">
-                    <Image src="/avatars/astra.png" alt="Astra" fill className="object-cover" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-[17px] font-bold text-ink tracking-tight">Astra</span>
-                      <span className="text-[14px] text-ink-muted">AI CEO</span>
+            <Stagger className="flex gap-4 px-5 pt-3 pb-7 snap-x items-stretch" delay={0.1} stagger={0.1}>
+            {happeningCards.map((card) => (
+              <StaggerItem key={card.name} className="snap-start shrink-0 flex">
+                <motion.div
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.25 }}
+                  className={`w-[300px] h-[280px] rounded-[22px] border p-2.5 flex flex-col gap-2 cursor-pointer font-sans ${card.shell}`}
+                >
+                  {/* Header: category + actions */}
+                  <div className="flex items-start justify-between shrink-0 gap-1.5">
+                    <div className="flex items-center gap-2.5 min-w-0">
+                      <div className="w-11 h-11 rounded-full overflow-hidden relative shrink-0 border border-black/5">
+                        <Image src={card.avatar} alt={card.name} fill className="object-cover" />
+                      </div>
+                      <div className="min-w-0 flex flex-col gap-1">
+                        <div className="flex items-baseline gap-1.5 min-w-0">
+                          <p className={`text-[14px] font-semibold font-sans tracking-tight truncate ${card.label}`}>
+                            {card.name}
+                          </p>
+                          <p className={`text-[11px] font-medium font-sans truncate opacity-70 ${card.label}`}>
+                            {card.role}
+                          </p>
+                        </div>
+                        <div
+                          className={`inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border font-sans text-[11px] w-fit ${card.taskBadge}`}
+                          title={`${card.tasksOngoing} tasks ongoing`}
+                        >
+                          <span className="font-bold tabular-nums leading-none">
+                            {card.tasksOngoing}
+                          </span>
+                          <span className="font-medium leading-none">
+                            ongoing
+                          </span>
+                        </div>
+                      </div>
                     </div>
-                    <span className="text-[14px] text-ink-muted mt-0.5">12 Tasks ongoing</span>
-                  </div>
-                </div>
-                <div className="bg-[#F8F9FA] rounded-[16px] p-4 flex flex-col flex-1 border border-border/40 mx-1 mb-1">
-                  <p className="font-bold text-[15px] text-ink mb-1">3 decisions need review</p>
-                  <p className="text-[14px] text-ink-muted leading-relaxed line-clamp-2">Astra is waiting for your input on Q3 planning and budget.</p>
-                  <div className="mt-auto pt-4">
-                    <button className="text-[14px] font-bold text-ink flex items-center gap-1.5 hover:underline">
-                      Review now <ArrowRight size={14} weight="bold" />
+                    <button
+                      type="button"
+                      className={`p-1 rounded-lg transition-colors shrink-0 ${card.iconBtn}`}
+                      aria-label={`More for ${card.name}`}
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      <DotsThree size={18} weight="bold" />
                     </button>
                   </div>
-                </div>
-              </motion.div>
-            </StaggerItem>
 
-            {/* Indie Card */}
-            <StaggerItem className="snap-start shrink-0">
-              <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 28px rgba(0,0,0,0.06)" }}
-                className="w-[280px] bg-paper border border-border rounded-[24px] p-2 flex flex-col gap-3 shadow-sm cursor-pointer"
-              >
-                <div className="flex items-center gap-3 px-1 pt-1.5">
-                  <div className="w-[52px] h-[52px] rounded-full bg-purple-100 flex items-center justify-center shrink-0 relative overflow-hidden">
-                    <Image src="/avatars/indie.png" alt="Indie" fill className="object-cover" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-[17px] font-bold text-ink tracking-tight">Indie</span>
-                      <span className="text-[14px] text-ink-muted">Design Lead</span>
+                  {/* Nested white content card */}
+                  <div className="bg-white rounded-[14px] border border-black/[0.04] p-3 flex flex-col gap-2 shadow-[0_1px_2px_rgba(0,0,0,0.03)] flex-1 min-h-0 font-sans">
+                    <div className="flex flex-wrap gap-1.5 shrink-0">
+                      {card.tags.map((tag) => (
+                        <span
+                          key={tag.label}
+                          className={`inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold font-sans ${tag.className}`}
+                        >
+                          {tag.label}
+                        </span>
+                      ))}
                     </div>
-                    <span className="text-[14px] text-ink-muted mt-0.5">4 Tasks ongoing</span>
-                  </div>
-                </div>
-                <div className="bg-[#F8F9FA] rounded-[16px] p-4 flex flex-col flex-1 border border-border/40 mx-1 mb-1">
-                  <p className="font-bold text-[15px] text-ink mb-1">Logo concepts ready</p>
-                  <p className="text-[14px] text-ink-muted leading-relaxed line-clamp-2">Generated 3 visual directions for the AcmeAI brand launch.</p>
-                  <div className="mt-auto pt-4">
-                    <button className="text-[14px] font-bold text-ink flex items-center gap-1.5 hover:underline">
-                      View <ArrowRight size={14} weight="bold" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </StaggerItem>
-
-            {/* Riley Card */}
-            <StaggerItem className="snap-start shrink-0">
-              <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 28px rgba(0,0,0,0.06)" }}
-                className="w-[280px] bg-paper border border-border rounded-[24px] p-2 flex flex-col gap-3 shadow-sm cursor-pointer opacity-90"
-              >
-                <div className="flex items-center gap-3 px-1 pt-1.5">
-                  <div className="w-[52px] h-[52px] rounded-full bg-blue-100 flex items-center justify-center shrink-0 relative overflow-hidden">
-                    <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-[17px] font-bold text-ink tracking-tight">Riley</span>
-                      <span className="text-[14px] text-ink-muted">Head of Research</span>
+                    <p className="text-[16px] font-bold font-sans text-ink tracking-tight leading-snug shrink-0">
+                      {card.title}
+                    </p>
+                    <p className="text-[13px] font-sans text-ink/80 leading-relaxed line-clamp-3">
+                      {card.body}
+                    </p>
+                    <div className="mt-auto pt-1 shrink-0">
+                      <button
+                        type="button"
+                        className="text-[13px] font-bold font-sans text-ink flex items-center gap-1.5 hover:underline"
+                      >
+                        {card.cta} <ArrowRight size={13} weight="bold" />
+                      </button>
                     </div>
-                    <span className="text-[14px] text-ink-muted mt-0.5">1 Task ongoing</span>
                   </div>
-                </div>
-                <div className="bg-[#F8F9FA] rounded-[16px] p-4 flex flex-col flex-1 border border-border/40 mx-1 mb-1">
-                  <p className="font-bold text-[15px] text-ink-muted mb-1">Research completed</p>
-                  <p className="text-[14px] text-ink-muted/70 leading-relaxed line-clamp-2">Competitor scan and market positioning memo is now available.</p>
-                  <div className="mt-auto pt-4">
-                    <button className="text-[14px] font-bold text-ink flex items-center gap-1.5 hover:underline">
-                      Read <ArrowRight size={14} weight="bold" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </StaggerItem>
-
-            {/* Darren Card */}
-            <StaggerItem className="snap-start shrink-0">
-              <motion.div
-                whileHover={{ y: -4, boxShadow: "0 12px 28px rgba(0,0,0,0.06)" }}
-                className="w-[280px] bg-paper border border-border rounded-[24px] p-2 flex flex-col gap-3 shadow-sm cursor-pointer"
-              >
-                <div className="flex items-center gap-3 px-1 pt-1.5">
-                  <div className="w-[52px] h-[52px] rounded-full bg-slate-100 flex items-center justify-center shrink-0 relative overflow-hidden">
-                    <Image src="/avatars/darren.png" alt="Darren" fill className="object-cover" />
-                  </div>
-                  <div className="flex flex-col justify-center">
-                    <div className="flex items-baseline gap-1.5">
-                      <span className="text-[17px] font-bold text-ink tracking-tight">Darren</span>
-                      <span className="text-[14px] text-ink-muted">AI CTO</span>
-                    </div>
-                    <span className="text-[14px] text-ink-muted mt-0.5">7 Tasks ongoing</span>
-                  </div>
-                </div>
-                <div className="bg-[#F8F9FA] rounded-[16px] p-4 flex flex-col flex-1 border border-border/40 mx-1 mb-1">
-                  <p className="font-bold text-[15px] text-ink mb-1">Build blocked</p>
-                  <p className="text-[14px] text-ink-muted leading-relaxed line-clamp-2">Missing API credentials required to deploy the landing page.</p>
-                  <div className="mt-auto pt-4">
-                    <button className="text-[14px] font-bold text-ink flex items-center gap-1.5 hover:underline">
-                      Resolve <ArrowRight size={14} weight="bold" />
-                    </button>
-                  </div>
-                </div>
-              </motion.div>
-            </StaggerItem>
+                </motion.div>
+              </StaggerItem>
+            ))}
             
             <div className="snap-start shrink-0 w-[20px]" />
           </Stagger>

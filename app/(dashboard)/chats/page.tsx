@@ -261,40 +261,62 @@ export default function ChatsPage() {
                 I'll coordinate this with Jordan, Riley, and Casey. I've broken down the work into 3 tasks for the team:
               </div>
               
-              {/* Task Spawn Card inside Chat - Modeled after Home cards */}
-              <div className="bg-paper border border-border rounded-[20px] p-1.5 flex flex-col shadow-sm max-w-[400px]">
-                <div className="flex items-center gap-3 px-1.5 pt-1.5 pb-2">
-                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
-                    <Kanban size={18} weight="fill" className="text-purple-600" />
+              {/* Task Spawn Card — pastel shell + nested white panel (matches Home happening cards) */}
+              <div className="bg-[#F6EEF4] border border-[#E5D0DE] rounded-[22px] p-2.5 flex flex-col gap-2 shadow-sm max-w-[400px] font-sans">
+                <div className="flex items-center justify-between gap-2 px-0.5">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-9 h-9 bg-white/80 border border-[#E5D0DE] rounded-full flex items-center justify-center shrink-0">
+                      <Kanban size={18} weight="fill" className="text-[#7A4568]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[14px] font-semibold text-[#7A4568] tracking-tight truncate">
+                        3 Tasks Created
+                      </p>
+                      <p className="text-[11px] font-medium text-[#7A4568]/70 truncate">
+                        Spawned by Astra
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-[15px] font-bold text-ink tracking-tight">3 Tasks Created</p>
+                  <div className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border border-[#E5D0DE] bg-white/80 text-[#7A4568] font-sans text-[11px] shrink-0">
+                    <span className="font-bold tabular-nums leading-none">3</span>
+                    <span className="font-medium leading-none">tasks</span>
+                  </div>
                 </div>
-                
-                <div className="bg-[#F8F9FA] rounded-[14px] p-2 flex flex-col mx-1.5 mb-1.5 border border-border/40">
-                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-white hover:shadow-sm cursor-pointer transition-all group">
-                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50 shrink-0">
+
+                <div className="bg-white rounded-[14px] border border-black/[0.04] p-2.5 flex flex-col gap-1 shadow-[0_1px_2px_rgba(0,0,0,0.03)]">
+                  <div className="flex flex-wrap gap-1.5 px-1 pb-1.5">
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold bg-[#EDE0E9] text-[#7A4568]">
+                      Launch
+                    </span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold bg-[#EDE0E9]/70 text-[#7A4568]">
+                      Multi-agent
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-[#F8F9FA] cursor-pointer transition-all group">
+                    <div className="w-7 h-7 rounded-full overflow-hidden relative border border-border/50 shrink-0">
                       <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
                     </div>
-                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-blue-600 transition-colors">Research launch channels</p>
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-[#7A4568] transition-colors">Research launch channels</p>
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-white hover:shadow-sm cursor-pointer transition-all group">
-                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50 shrink-0">
+                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-[#F8F9FA] cursor-pointer transition-all group">
+                    <div className="w-7 h-7 rounded-full overflow-hidden relative border border-border/50 shrink-0">
                       <Image src="/avatars/jordan.png" alt="Jordan" fill className="object-cover" />
                     </div>
-                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-blue-600 transition-colors">Create GTM plan</p>
-                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-[#7A4568] transition-colors">Create GTM plan</p>
+                    <div className="w-1.5 h-1.5 rounded-full bg-orange-500 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-white hover:shadow-sm cursor-pointer transition-all group">
-                    <div className="w-6 h-6 rounded-full overflow-hidden relative border border-border/50 shrink-0">
+                  <div className="flex items-center gap-3 p-2 rounded-[10px] hover:bg-[#F8F9FA] cursor-pointer transition-all group">
+                    <div className="w-7 h-7 rounded-full overflow-hidden relative border border-border/50 shrink-0">
                       <Image src="/avatars/casey.png" alt="Casey" fill className="object-cover" />
                     </div>
-                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-blue-600 transition-colors">Draft launch copy</p>
-                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 opacity-60 group-hover:opacity-100 transition-opacity" />
+                    <p className="text-[13px] font-medium text-ink flex-1 truncate group-hover:text-[#7A4568] transition-colors">Draft launch copy</p>
+                    <div className="w-1.5 h-1.5 rounded-full bg-blue-500 shrink-0 opacity-70 group-hover:opacity-100 transition-opacity" />
                   </div>
-                  
-                  <div className="mt-1 pt-2.5 px-2 pb-1 border-t border-border/40">
-                    <button className="text-[13px] font-bold text-ink flex items-center gap-1.5 hover:text-blue-600 transition-colors">
+
+                  <div className="mt-1 pt-2 px-2 pb-0.5 border-t border-border/40">
+                    <button className="text-[13px] font-bold text-ink flex items-center gap-1.5 hover:text-[#7A4568] transition-colors">
                       View board <ArrowRight size={12} weight="bold" />
                     </button>
                   </div>
@@ -346,37 +368,60 @@ export default function ChatsPage() {
                 Riley's on it — researching screen recording apps now.
               </div>
               
-              {/* Task Creation Block - Updated to match screenshot UI */}
-              <div className="bg-paper border border-border rounded-[20px] p-1.5 flex flex-col shadow-sm max-w-[400px]">
-                <div className="flex items-center gap-3 px-1.5 pt-1.5 pb-2">
-                  <div className="w-8 h-8 bg-purple-100 rounded-full flex items-center justify-center shrink-0">
-                    <Kanban size={18} weight="fill" className="text-purple-600" />
+              {/* Single Task Created — pastel shell + nested white panel */}
+              <div className="bg-[#EEF3F8] border border-[#D2DEEA] rounded-[22px] p-2.5 flex flex-col gap-2 shadow-sm max-w-[400px] font-sans">
+                <div className="flex items-center justify-between gap-2 px-0.5">
+                  <div className="flex items-center gap-2.5 min-w-0">
+                    <div className="w-9 h-9 bg-white/80 border border-[#D2DEEA] rounded-full flex items-center justify-center shrink-0">
+                      <Kanban size={18} weight="fill" className="text-[#3D5F7A]" />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[14px] font-semibold text-[#3D5F7A] tracking-tight truncate">
+                        Task Created
+                      </p>
+                      <p className="text-[11px] font-medium text-[#3D5F7A]/70 truncate">
+                        Assigned to Riley
+                      </p>
+                    </div>
                   </div>
-                  <p className="text-[15px] font-bold text-ink tracking-tight">Task Created</p>
+                  <div className="inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded-full border border-[#D2DEEA] bg-white/80 text-[#3D5F7A] font-sans text-[11px] shrink-0">
+                    <span className="font-bold tabular-nums leading-none">1</span>
+                    <span className="font-medium leading-none">task</span>
+                  </div>
                 </div>
-                
-                <div className="bg-[#F8F9FA] rounded-[14px] p-3 flex flex-col gap-3 mx-1.5 mb-1.5 border border-border/40 hover:border-border hover:shadow-sm transition-all group cursor-pointer">
+
+                <div className="bg-white rounded-[14px] border border-black/[0.04] p-3 flex flex-col gap-2.5 shadow-[0_1px_2px_rgba(0,0,0,0.03)] hover:shadow-sm transition-all group cursor-pointer">
+                  <div className="flex flex-wrap gap-1.5">
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold bg-[#DCE7F0] text-[#3D5F7A]">
+                      Research
+                    </span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold bg-[#DCE7F0]/70 text-[#3D5F7A]">
+                      To Do
+                    </span>
+                    <span className="inline-flex items-center px-1.5 py-0.5 rounded-md text-[11px] font-semibold bg-[#DCE7F0]/70 text-[#3D5F7A]">
+                      DWA-3
+                    </span>
+                  </div>
+
                   <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full overflow-hidden relative border border-border/50 shrink-0 shadow-sm">
+                    <div className="w-8 h-8 rounded-full overflow-hidden relative border border-border/50 shrink-0">
                       <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
                     </div>
                     <div className="flex-1 min-w-0 flex flex-col gap-1.5 pt-0.5">
-                      <p className="text-[14px] font-semibold text-ink leading-snug group-hover:text-blue-600 transition-colors">Research screen recording apps</p>
-                      <div className="flex items-center gap-2.5">
-                        <span className="text-[10px] font-bold text-ink-muted uppercase tracking-wider bg-border/50 px-1.5 py-0.5 rounded">DWA-3</span>
-                        <div className="flex items-center gap-1.5">
-                          <span className="w-1.5 h-1.5 rounded-full bg-blue-500 shadow-[0_0_4px_rgba(59,130,246,0.4)]" />
-                          <span className="text-[11px] font-semibold text-ink-muted">To Do</span>
-                        </div>
-                        <div className="w-1 h-1 rounded-full bg-border" />
-                        <span className="text-[11px] font-medium text-ink-muted flex items-center gap-1"><Clock size={12} /> Today</span>
+                      <p className="text-[14px] font-semibold text-ink leading-snug group-hover:text-[#3D5F7A] transition-colors">
+                        Research screen recording apps
+                      </p>
+                      <div className="flex items-center gap-2 text-[11px] font-medium text-ink-muted">
+                        <span className="flex items-center gap-1"><Clock size={12} /> Today</span>
                       </div>
                     </div>
                   </div>
-                  
-                  <div className="pt-2.5 border-t border-border/40 flex justify-between items-center">
-                    <span className="text-[12px] font-medium text-ink-muted group-hover:text-ink transition-colors">Click to open details</span>
-                    <ArrowUpRight size={14} className="text-ink-muted group-hover:text-blue-600 transition-colors" weight="bold" />
+
+                  <div className="pt-2 border-t border-border/40 flex justify-between items-center">
+                    <span className="text-[12px] font-bold text-ink group-hover:text-[#3D5F7A] transition-colors">
+                      Open details
+                    </span>
+                    <ArrowUpRight size={14} className="text-ink-muted group-hover:text-[#3D5F7A] transition-colors" weight="bold" />
                   </div>
                 </div>
               </div>
