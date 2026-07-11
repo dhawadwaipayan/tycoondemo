@@ -219,97 +219,169 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Work Board & Waiting on You Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          
-          {/* Waiting on You */}
-        <section className="lg:col-span-1 space-y-6">
+        {/* Task Board */}
+        <section className="space-y-6">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold tracking-tight text-ink">Waiting on you</h2>
-          </div>
-            <div className="space-y-3">
-              {[
-                { decision: "Choose logo direction", by: "Indie", reason: "Needed before Darren starts landing page build", due: "Today" },
-                { decision: "Approve launch budget", by: "Astra", reason: "Requested spend exceeds $500 limit", due: "Today" }
-              ].map((item, i) => (
-                <div key={i} className="p-4 bg-paper border border-accent-alert/30 rounded-lg shadow-sm space-y-3">
-                  <div className="flex justify-between items-start gap-2">
-                    <p className="text-[14px] font-semibold leading-tight">{item.decision}</p>
-                    <span className="shrink-0 text-[11px] font-semibold bg-accent-alert/10 text-accent-alert px-2 py-0.5 rounded-sm uppercase tracking-wide">Action</span>
-                  </div>
-                  <div className="space-y-1">
-                    <p className="text-[12px] text-ink-muted"><span className="font-medium text-ink">From:</span> {item.by}</p>
-                    <p className="text-[12px] text-ink-muted"><span className="font-medium text-ink">Why:</span> {item.reason}</p>
-                  </div>
-                  <button className="w-full mt-2 py-1.5 bg-ink text-paper text-[13px] font-semibold rounded-md hover:opacity-90 transition-opacity">
-                    Review
-                  </button>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          {/* Kanban Panel */}
-        <section className="lg:col-span-2 space-y-6">
-          <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold tracking-tight text-ink-muted">Work board</h2>
-            <button className="text-[13px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
-              View all <ArrowRight size={12} weight="bold" />
+            <h2 className="text-xl font-semibold tracking-tight text-ink">Task board</h2>
+            <button className="text-[14px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
+              View board <ArrowRight size={14} weight="bold" />
             </button>
           </div>
             
-            <div className="grid grid-cols-2 gap-4">
-              {/* In Progress Column */}
-              <div className="space-y-3 bg-paper-warm p-4 rounded-xl border border-border">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {/* Backlog */}
+            <div className="space-y-3 bg-paper border border-border/50 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-purple-400" />
+                  <p className="text-[13px] font-semibold text-ink">Backlog</p>
+                </div>
+                <span className="text-[12px] font-bold text-ink-muted bg-[#F8F9FA] px-1.5 py-0.5 rounded-md">2</span>
+              </div>
+              <div className="bg-[#F8F9FA] border border-border/40 p-3 rounded-xl hover:border-border transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-semibold leading-tight text-ink mb-2">Brand ads copy refresh</p>
                 <div className="flex items-center justify-between">
-                  <p className="text-[11px] font-semibold tracking-wide text-ink-muted uppercase">IN PROGRESS</p>
-                  <span className="text-[11px] font-bold text-ink-muted">2</span>
-                </div>
-                
-                <div className="bg-paper border border-border p-3 rounded-lg shadow-sm space-y-3">
-                  <p className="text-[14px] font-medium leading-tight">Implement landing page hero section</p>
-                  <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-full bg-ink text-paper flex items-center justify-center font-serif text-[10px]">D</div>
-                      <span className="text-[12px] text-ink-muted">Darren</span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden relative border border-border/50">
+                      <Image src="/avatars/casey.png" alt="Casey" fill className="object-cover" />
                     </div>
-                    <ClockCounterClockwise size={14} className="text-ink-muted" />
-                  </div>
-                </div>
-
-                <div className="bg-paper border border-border p-3 rounded-lg shadow-sm space-y-3">
-                  <p className="text-[14px] font-medium leading-tight">Draft launch email sequence</p>
-                  <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-full bg-ink text-paper flex items-center justify-center font-serif text-[10px]">C</div>
-                      <span className="text-[12px] text-ink-muted">Casey</span>
-                    </div>
-                    <ClockCounterClockwise size={14} className="text-ink-muted" />
+                    <span className="text-[11px] font-medium text-ink-muted">Amelia Grant</span>
                   </div>
                 </div>
               </div>
-
-              {/* Done Column */}
-              <div className="space-y-3 bg-paper-warm p-4 rounded-xl border border-border opacity-70">
+              <div className="bg-[#F8F9FA] border border-border/40 p-3 rounded-xl hover:border-border transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-semibold leading-tight text-ink mb-2">"Leave work at work" billboards</p>
                 <div className="flex items-center justify-between">
-                  <p className="text-[11px] font-semibold tracking-wide text-ink-muted uppercase">DONE</p>
-                  <span className="text-[11px] font-bold text-ink-muted">1</span>
-                </div>
-                
-                <div className="bg-paper border border-border p-3 rounded-lg shadow-sm space-y-3">
-                  <p className="text-[14px] font-medium leading-tight line-through text-ink-muted">Competitor analysis report</p>
-                  <div className="flex items-center justify-between pt-1">
-                    <div className="flex items-center gap-1.5">
-                      <div className="w-5 h-5 rounded-full bg-ink text-paper flex items-center justify-center font-serif text-[10px]">R</div>
-                      <span className="text-[12px] text-ink-muted">Riley</span>
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden relative border border-border/50">
+                      <Image src="/avatars/darren.png" alt="Darren" fill className="object-cover" />
                     </div>
-                    <CheckCircle size={14} className="text-accent-mint" weight="fill" />
+                    <span className="text-[11px] font-medium text-ink-muted">Daniel Foster</span>
                   </div>
                 </div>
               </div>
             </div>
-          </section>
-        </div>
+
+            {/* In Progress */}
+            <div className="space-y-3 bg-paper border border-border/50 p-4 rounded-2xl shadow-sm">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-orange-400" />
+                  <p className="text-[13px] font-semibold text-ink">In Progress</p>
+                </div>
+                <span className="text-[12px] font-bold text-ink-muted bg-[#F8F9FA] px-1.5 py-0.5 rounded-md">3</span>
+              </div>
+              <div className="bg-[#F8F9FA] border border-border/40 p-3 rounded-xl hover:border-border transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-semibold leading-tight text-ink mb-2">BFCM campaign</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden relative border border-border/50">
+                      <Image src="/avatars/jordan.png" alt="Jordan" fill className="object-cover" />
+                    </div>
+                    <span className="text-[11px] font-medium text-ink-muted">Benjamin Ortiz</span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 border border-orange-200 px-1.5 py-0.5 rounded-md">High</span>
+                </div>
+              </div>
+              <div className="bg-[#F8F9FA] border border-border/40 p-3 rounded-xl hover:border-border transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-semibold leading-tight text-ink mb-2">Influencer promotions</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden relative border border-border/50">
+                      <Image src="/avatars/indie.png" alt="Indie" fill className="object-cover" />
+                    </div>
+                    <span className="text-[11px] font-medium text-ink-muted">Ruby Gallagher</span>
+                  </div>
+                  <span className="text-[10px] font-semibold text-orange-600 bg-orange-100 border border-orange-200 px-1.5 py-0.5 rounded-md">High</span>
+                </div>
+              </div>
+            </div>
+
+            {/* Done */}
+            <div className="space-y-3 bg-paper border border-border/50 p-4 rounded-2xl shadow-sm opacity-60">
+              <div className="flex items-center justify-between mb-2">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <p className="text-[13px] font-semibold text-ink">Done</p>
+                </div>
+                <span className="text-[12px] font-bold text-ink-muted bg-[#F8F9FA] px-1.5 py-0.5 rounded-md">2</span>
+              </div>
+              <div className="bg-[#F8F9FA] border border-border/40 p-3 rounded-xl hover:border-border transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-semibold leading-tight text-ink-muted line-through mb-2">Grand central poster</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden relative border border-border/50">
+                      <Image src="/avatars/darren.png" alt="Darren" fill className="object-cover" />
+                    </div>
+                    <span className="text-[11px] font-medium text-ink-muted">Caleb Smith</span>
+                  </div>
+                  <CheckCircle size={14} className="text-emerald-500" weight="fill" />
+                </div>
+              </div>
+              <div className="bg-[#F8F9FA] border border-border/40 p-3 rounded-xl hover:border-border transition-colors cursor-pointer shadow-[0_2px_8px_rgba(0,0,0,0.02)]">
+                <p className="text-[13px] font-semibold leading-tight text-ink-muted line-through mb-2">Social Easter eggs</p>
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-1.5">
+                    <div className="w-[18px] h-[18px] rounded-full overflow-hidden relative border border-border/50">
+                      <Image src="/avatars/riley.png" alt="Riley" fill className="object-cover" />
+                    </div>
+                    <span className="text-[11px] font-medium text-ink-muted">Caleb Smith</span>
+                  </div>
+                  <CheckCircle size={14} className="text-emerald-500" weight="fill" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Suggestion Templates */}
+        <section className="space-y-6">
+          <div className="flex items-center justify-between">
+            <h2 className="text-xl font-semibold tracking-tight text-ink">Suggestion templates</h2>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            {/* Template 1 */}
+            <div className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm">
+              <div className="w-8 h-8 rounded-[10px] bg-blue-50 text-blue-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <RocketLaunch size={16} weight="fill" />
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-ink mb-1">Product Launch</p>
+                <p className="text-[12px] text-ink-muted leading-relaxed">End-to-end launch plan with marketing assets and timelines.</p>
+              </div>
+            </div>
+            {/* Template 2 */}
+            <div className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm">
+              <div className="w-8 h-8 rounded-[10px] bg-purple-50 text-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <Palette size={16} weight="fill" />
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-ink mb-1">Brand Identity</p>
+                <p className="text-[12px] text-ink-muted leading-relaxed">Generate logos, color palettes, and typography guidelines.</p>
+              </div>
+            </div>
+            {/* Template 3 */}
+            <div className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm">
+              <div className="w-8 h-8 rounded-[10px] bg-emerald-50 text-emerald-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <PresentationChart size={16} weight="fill" />
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-ink mb-1">Competitor Analysis</p>
+                <p className="text-[12px] text-ink-muted leading-relaxed">Deep dive into market positioning and feature comparisons.</p>
+              </div>
+            </div>
+            {/* Template 4 */}
+            <div className="p-4 rounded-2xl border border-border bg-paper hover:border-ink/20 transition-colors cursor-pointer flex flex-col gap-3 group shadow-sm">
+              <div className="w-8 h-8 rounded-[10px] bg-orange-50 text-orange-600 flex items-center justify-center group-hover:scale-110 transition-transform">
+                <BookOpen size={16} weight="fill" />
+              </div>
+              <div>
+                <p className="text-[14px] font-semibold text-ink mb-1">Content Strategy</p>
+                <p className="text-[12px] text-ink-muted leading-relaxed">Blog topics, social media calendar, and SEO keywords.</p>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
     </div>
