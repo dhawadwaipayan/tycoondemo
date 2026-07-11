@@ -337,7 +337,7 @@ export default function TasksPage() {
           <div className="h-[52px] bg-paper border-b border-border flex items-center justify-between px-4 shrink-0">
             <div className="flex items-center gap-2">
               <Kanban size={18} className="text-ink-muted" />
-              <h3 className="font-semibold text-[14px] text-ink">Task Details</h3>
+              <div className="font-semibold text-[14px] text-ink font-sans">Task Details</div>
             </div>
             <div className="flex items-center gap-1">
                <button className="p-1.5 text-ink-muted hover:text-ink hover:bg-paper-elevated rounded-md transition-colors">
@@ -357,7 +357,7 @@ export default function TasksPage() {
             {selectedTask ? (
               <div className="space-y-8">
                 <div>
-                  <h2 className="text-[20px] font-bold text-ink leading-tight mb-6">{selectedTask.title}</h2>
+                  <div className="text-[20px] font-bold text-ink font-sans leading-tight mb-6">{selectedTask.title}</div>
                   
                   <div className="space-y-4">
                      {/* Status */}
@@ -414,7 +414,7 @@ export default function TasksPage() {
                 <div className="h-px w-full bg-border" />
 
                 <div>
-                   <h3 className="text-[14px] font-semibold text-ink mb-3">Description</h3>
+                   <div className="text-[14px] font-semibold text-ink font-sans mb-3">Description</div>
                    <textarea 
                      placeholder="Add a more detailed description..."
                      className="w-full min-h-[150px] bg-[#F8F9FA] border border-border/50 rounded-xl p-3 text-[14px] outline-none focus:border-ink/30 text-ink placeholder:text-ink-muted resize-none transition-colors"
