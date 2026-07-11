@@ -18,22 +18,22 @@ const templates = [
   {
     title: "Product Launch",
     description: "End-to-end launch plan with marketing assets and timelines.",
-    image: "/templates/product-launch.png",
+    image: "/templates/product-launch.jpg",
   },
   {
     title: "Brand Identity",
     description: "Generate logos, color palettes, and typography guidelines.",
-    image: "/templates/brand-identity.png",
+    image: "/templates/brand-identity.jpg",
   },
   {
     title: "Competitor Analysis",
     description: "Deep dive into market positioning and feature comparisons.",
-    image: "/templates/competitor.png",
+    image: "/templates/competitor.jpg",
   },
   {
     title: "Content Strategy",
     description: "Blog topics, social media calendar, and SEO keywords.",
-    image: "/templates/content.png",
+    image: "/templates/content.jpg",
   },
 ];
 
@@ -59,92 +59,108 @@ export default function HomePage() {
 
   return (
     <div className="flex-1 relative bg-paper overflow-hidden flex flex-col h-full w-full">
-      {/* Stylized lined mint green gradient background */}
+      {/* Layer 1: mint grid gradient (bottom) */}
       <div 
         className="absolute inset-x-0 top-0 h-[800px] pointer-events-none z-0"
         style={{
           backgroundImage: `
-            repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.06) 31px, rgba(14, 116, 75, 0.06) 32px),
-            linear-gradient(to top, transparent 0%, rgba(157, 224, 185, 0.3) 100%)
+            repeating-linear-gradient(to right, transparent, transparent 31px, rgba(14, 116, 75, 0.045) 31px, rgba(14, 116, 75, 0.045) 32px),
+            linear-gradient(to top, transparent 0%, rgba(157, 224, 185, 0.22) 100%)
           `,
           WebkitMaskImage: 'linear-gradient(to bottom, black 30%, transparent 100%)',
           maskImage: 'linear-gradient(to bottom, black 30%, transparent 100%)'
         }}
       />
       
-      {/* Scrollable Content */}
+      {/* Scrollable content — hands scroll with UI */}
       <div className="flex-1 overflow-y-auto relative z-10 w-full">
-        <div className="max-w-[1000px] mx-auto px-10 pt-12 pb-24 space-y-16">
-        
-          {/* Command Input Area */}
-          <section className="w-full flex flex-col items-center relative z-20">
-          <Typewriter
-            as="h1"
-            text="What can I do for you?"
-            speed={42}
-            delay={180}
-            className="font-display font-bold text-[40px] text-ink text-center tracking-tight mb-12 min-h-[48px]"
-            onComplete={() => setHeadingDone(true)}
+        {/* Hands — above gradient, below UI, scrolls with page */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-x-0 top-0 z-[1] w-full aspect-[4096/1599] select-none"
+        >
+          <Image
+            src="/hands3.png"
+            alt=""
+            fill
+            priority
+            sizes="100vw"
+            className="object-contain object-top opacity-30"
           />
-          
-          <FadeIn delay={0.35} className="w-full">
-            <motion.div
-              className="bg-paper rounded-[24px] p-4 flex flex-col border border-border shadow-sm focus-within:border-ink transition-colors w-full"
-              whileHover={{ boxShadow: "0 8px 30px rgba(0,0,0,0.04)" }}
-              transition={{ duration: 0.3 }}
-            >
-              <textarea 
-                value={composerValue}
-                onChange={(e) => setComposerValue(e.target.value)}
-                placeholder={composerValue ? "" : placeholder || " "}
-                className="bg-transparent text-ink placeholder:text-ink-muted text-[16px] font-medium resize-none outline-none w-full min-h-[60px] p-2"
-              />
-              
-              <div className="flex justify-between items-center mt-2 px-2">
-                <div className="flex items-center gap-4 text-ink-muted">
-                  <button className="hover:text-ink transition-colors"><Plus size={20} /></button>
-                  <button className="hover:text-ink transition-colors"><At size={20} /></button>
-                  <button className="hover:text-ink transition-colors"><MicrophoneStage size={20} /></button>
-                  <button className="hover:text-ink transition-colors">
-                    <div className="border border-current rounded-[6px] w-[20px] h-[20px] flex items-center justify-center text-[11px] font-bold">/</div>
-                  </button>
-                </div>
-                <div className="flex items-center gap-4 text-ink-muted">
-                  <button className="flex items-center gap-1.5 text-[14px] font-medium hover:text-ink transition-colors">
-                    Auto <CaretDown size={14} weight="bold" />
-                  </button>
-                  <button className="hover:text-ink transition-colors"><MagicWand size={20} /></button>
-                  <motion.button
-                    whileHover={{ scale: 1.06 }}
-                    whileTap={{ scale: 0.94 }}
-                    className="bg-ink hover:opacity-90 text-paper p-2 rounded-full transition-opacity flex items-center justify-center w-9 h-9 shadow-sm"
-                  >
-                    <ArrowUp size={16} weight="bold" />
-                  </motion.button>
-                </div>
-              </div>
-            </motion.div>
-          </FadeIn>
+        </div>
 
-          {/* Quick Action Chips */}
-          <Stagger className="flex justify-center gap-2.5 overflow-x-auto pt-6 pb-2 scrollbar-hide hide-scroll-bar w-full" delay={0.55} stagger={0.05}>
-            {quickActions.map((action) => {
-              const Icon = action.icon;
-              return (
-                <StaggerItem key={action.label}>
-                  <motion.button
-                    whileHover={{ y: -2, scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-paper border border-border hover:bg-paper-elevated transition-colors shrink-0 shadow-sm"
-                  >
-                    <Icon weight={action.weight} className={action.color} size={18} />
-                    <span className="text-ink text-[14px] font-medium">{action.label}</span>
-                  </motion.button>
-                </StaggerItem>
-              );
-            })}
-          </Stagger>
-        </section>
+        <div className="relative z-10 max-w-[1000px] mx-auto px-10 pt-20 pb-24 space-y-16">
+        
+          {/* Hero */}
+          <section className="relative w-full flex flex-col items-center pt-6 pb-4">
+            <Typewriter
+              as="h1"
+              text="What can I do for you?"
+              speed={42}
+              delay={180}
+              className="font-display font-bold text-[40px] text-ink text-center tracking-tight mb-24 min-h-[48px] [text-shadow:0_2px_20px_rgba(255,255,255,0.95),0_0_40px_rgba(255,255,255,0.8)]"
+              onComplete={() => setHeadingDone(true)}
+            />
+
+            <FadeIn delay={0.35} className="w-full">
+              <motion.div
+                className="bg-paper rounded-[24px] p-4 flex flex-col border border-border shadow-sm focus-within:border-ink transition-colors w-full"
+                whileHover={{ boxShadow: "0 8px 30px rgba(0,0,0,0.04)" }}
+                transition={{ duration: 0.3 }}
+              >
+                <textarea
+                  value={composerValue}
+                  onChange={(e) => setComposerValue(e.target.value)}
+                  placeholder={composerValue ? "" : placeholder || " "}
+                  className="bg-transparent text-ink placeholder:text-ink-muted text-[16px] font-medium resize-none outline-none w-full min-h-[60px] p-2"
+                />
+
+                <div className="flex justify-between items-center mt-2 px-2">
+                  <div className="flex items-center gap-4 text-ink-muted">
+                    <button className="hover:text-ink transition-colors"><Plus size={20} /></button>
+                    <button className="hover:text-ink transition-colors"><At size={20} /></button>
+                    <button className="hover:text-ink transition-colors"><MicrophoneStage size={20} /></button>
+                    <button className="hover:text-ink transition-colors">
+                      <div className="border border-current rounded-[6px] w-[20px] h-[20px] flex items-center justify-center text-[11px] font-bold">/</div>
+                    </button>
+                  </div>
+                  <div className="flex items-center gap-4 text-ink-muted">
+                    <button className="flex items-center gap-1.5 text-[14px] font-medium hover:text-ink transition-colors">
+                      Auto <CaretDown size={14} weight="bold" />
+                    </button>
+                    <button className="hover:text-ink transition-colors"><MagicWand size={20} /></button>
+                    <motion.button
+                      whileHover={{ scale: 1.06 }}
+                      whileTap={{ scale: 0.94 }}
+                      className="bg-ink hover:opacity-90 text-paper p-2 rounded-full transition-opacity flex items-center justify-center w-9 h-9 shadow-sm"
+                    >
+                      <ArrowUp size={16} weight="bold" />
+                    </motion.button>
+                  </div>
+                </div>
+              </motion.div>
+            </FadeIn>
+
+            <div className="relative z-10 -mx-3 mt-6 w-full overflow-x-auto scrollbar-hide">
+              <Stagger className="flex justify-center gap-2.5 px-3 pb-2 scrollbar-hide hide-scroll-bar w-max min-w-full mx-auto" delay={0.55} stagger={0.05}>
+                {quickActions.map((action) => {
+                  const Icon = action.icon;
+                  return (
+                    <StaggerItem key={action.label}>
+                      <motion.button
+                        whileHover={{ y: -2, scale: 1.02 }}
+                        whileTap={{ scale: 0.98 }}
+                        className="flex items-center gap-2.5 px-4 py-2.5 rounded-full bg-paper border border-border hover:bg-paper-elevated transition-colors shrink-0 shadow-sm"
+                      >
+                        <Icon weight={action.weight} className={action.color} size={18} />
+                        <span className="text-ink text-[14px] font-medium">{action.label}</span>
+                      </motion.button>
+                    </StaggerItem>
+                  );
+                })}
+              </Stagger>
+            </div>
+          </section>
 
         {/* Agent Updates */}
       <FadeIn delay={0.2} className="space-y-6">
@@ -155,7 +171,8 @@ export default function HomePage() {
           </button>
         </div>
           
-          <Stagger className="flex gap-4 overflow-x-auto pb-4 snap-x scrollbar-hide" delay={0.1} stagger={0.1}>
+          <div className="-mx-5 overflow-x-auto scrollbar-hide">
+            <Stagger className="flex gap-4 px-5 pt-3 pb-7 snap-x" delay={0.1} stagger={0.1}>
             {/* Astra Card */}
             <StaggerItem className="snap-start shrink-0">
               <motion.div
@@ -276,8 +293,9 @@ export default function HomePage() {
               </motion.div>
             </StaggerItem>
             
-            <div className="snap-start shrink-0 w-[40px]" />
+            <div className="snap-start shrink-0 w-[20px]" />
           </Stagger>
+          </div>
       </FadeIn>
 
         {/* Task Board */}
@@ -425,34 +443,37 @@ export default function HomePage() {
               Library <ArrowRight size={14} weight="bold" />
             </button>
           </div>
-          <Stagger className="flex gap-5 overflow-x-auto pb-4 snap-x scrollbar-hide" delay={0.05} stagger={0.08}>
-            {templates.map((template) => (
-              <StaggerItem key={template.title} className="snap-start shrink-0">
-                <motion.div
-                  whileHover={{ y: -5 }}
-                  transition={{ duration: 0.25 }}
-                  className="group cursor-pointer w-[320px] rounded-[24px] border border-border bg-paper overflow-hidden shadow-sm hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-ink/15 transition-all flex flex-col"
-                >
-                  <div className="relative h-[180px] overflow-hidden bg-[#F8F9FA]">
-                    <Image
-                      src={template.image}
-                      alt={template.title}
-                      fill
-                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
-                    />
-                  </div>
-                  <div className="p-5 flex flex-col gap-2 flex-1">
-                    <p className="text-[16px] font-semibold text-ink tracking-tight">{template.title}</p>
-                    <p className="text-[13px] text-ink-muted leading-relaxed">{template.description}</p>
-                    <span className="mt-auto pt-4 text-[13px] font-semibold text-ink-muted group-hover:text-ink flex items-center gap-1.5 transition-colors">
-                      Use template <ArrowRight size={13} weight="bold" className="transition-transform group-hover:translate-x-0.5" />
-                    </span>
-                  </div>
-                </motion.div>
-              </StaggerItem>
-            ))}
-            <div className="snap-start shrink-0 w-[24px]" />
-          </Stagger>
+          {/* Extra padding so hover lift + shadows aren't clipped by the scroll container */}
+          <div className="-mx-5 overflow-x-auto scrollbar-hide">
+            <Stagger className="flex gap-5 px-5 pt-4 pb-8 snap-x" delay={0.05} stagger={0.08}>
+              {templates.map((template) => (
+                <StaggerItem key={template.title} className="snap-start shrink-0">
+                  <motion.div
+                    whileHover={{ y: -4 }}
+                    transition={{ duration: 0.25 }}
+                    className="group cursor-pointer w-[320px] rounded-[24px] border border-border bg-paper shadow-sm hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-ink/15 transition-[box-shadow,border-color] flex flex-col"
+                  >
+                    <div className="relative h-[180px] overflow-hidden rounded-t-[24px] bg-[#F8F9FA]">
+                      <Image
+                        src={template.image}
+                        alt={template.title}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                    </div>
+                    <div className="p-5 flex flex-col gap-2 flex-1 rounded-b-[24px]">
+                      <p className="text-[16px] font-semibold text-ink tracking-tight">{template.title}</p>
+                      <p className="text-[13px] text-ink-muted leading-relaxed">{template.description}</p>
+                      <span className="mt-auto pt-4 text-[13px] font-semibold text-ink-muted group-hover:text-ink flex items-center gap-1.5 transition-colors">
+                        Use template <ArrowRight size={13} weight="bold" className="transition-transform group-hover:translate-x-0.5" />
+                      </span>
+                    </div>
+                  </motion.div>
+                </StaggerItem>
+              ))}
+              <div className="snap-start shrink-0 w-[20px]" />
+            </Stagger>
+          </div>
         </FadeIn>
       </div>
     </div>
