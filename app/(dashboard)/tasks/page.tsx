@@ -152,9 +152,9 @@ export default function TasksPage() {
       {/* Main Workspace: Board */}
       <div className="flex-1 flex flex-col bg-[#F8F9FA] overflow-hidden min-w-0 relative">
         
-        {/* Stylized lined mint green gradient background */}
+        {/* Stylized lined sepia gradient background */}
         <div 
-          className="absolute inset-x-0 top-0 bottom-0 pointer-events-none z-0"
+          className="absolute inset-x-0 top-[52px] bottom-0 pointer-events-none z-0"
           style={{
             backgroundImage: `
               repeating-linear-gradient(to right, transparent, transparent 31px, rgba(112, 66, 20, 0.04) 31px, rgba(112, 66, 20, 0.04) 32px),
@@ -166,7 +166,7 @@ export default function TasksPage() {
         />
 
         {/* Header */}
-        <header className="h-[52px] border-b border-border/60 flex items-center justify-between bg-transparent z-20 shrink-0 relative px-2">
+        <header className="h-[52px] border-b border-border flex items-center justify-between bg-paper/80 backdrop-blur-sm z-20 shrink-0 relative px-2">
           {/* Left Tabs */}
           <div className="flex h-full items-end gap-1 px-1 pt-1.5">
             
@@ -174,32 +174,32 @@ export default function TasksPage() {
             <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 bg-[#F8F9FA] border border-border/50 border-b-[#F8F9FA] rounded-t-[10px] min-w-[140px] max-w-[200px] cursor-pointer translate-y-[1px]">
                <Kanban size={16} className="text-ink shrink-0" weight="fill" />
                <span className="text-[13px] font-medium text-ink truncate flex-1">All tasks</span>
-               <span className="text-[11px] font-bold text-ink-muted bg-white px-1.5 py-0.5 rounded border border-border/50">{tasksData.length}</span>
+               <span className="text-[11px] font-bold text-ink-muted bg-white px-1.5 py-0.5 rounded border border-border/50 relative z-10">{tasksData.length}</span>
                <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-[#F8F9FA] to-transparent rounded-tr-[10px] pointer-events-none group-hover:opacity-0 transition-opacity" />
             </div>
 
             {/* Inactive Tab 1: WilowAI Launch */}
-            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/60 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
-               <div className="w-[16px] h-[16px] rounded bg-blue-100 flex items-center justify-center shrink-0 border border-blue-200">
+            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/50 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
+               <div className="w-[16px] h-[16px] rounded bg-blue-100 flex items-center justify-center shrink-0 border border-blue-200 opacity-70 group-hover:opacity-100 transition-opacity">
                   <span className="text-[9px] font-bold text-blue-600">W</span>
                </div>
                <span className="text-[13px] font-medium truncate flex-1">WilowAI Launch</span>
-               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10 relative">
                  <X size={12} weight="bold" />
                </button>
-               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-transparent group-hover:from-[#F8F9FA]/60 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
+               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-paper group-hover:from-[#F8F9FA]/50 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
             </div>
 
             {/* Inactive Tab 2: Marketing Prep */}
-            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/60 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
-               <div className="w-[16px] h-[16px] rounded bg-purple-100 flex items-center justify-center shrink-0 border border-purple-200">
+            <div className="group relative flex items-center gap-2 h-[38px] pl-3 pr-2 hover:bg-[#F8F9FA]/50 border border-transparent rounded-t-[10px] min-w-[160px] max-w-[200px] cursor-pointer text-ink-muted hover:text-ink transition-colors translate-y-[1px]">
+               <div className="w-[16px] h-[16px] rounded bg-purple-100 flex items-center justify-center shrink-0 border border-purple-200 opacity-70 group-hover:opacity-100 transition-opacity">
                   <span className="text-[9px] font-bold text-purple-600">M</span>
                </div>
                <span className="text-[13px] font-medium truncate flex-1">Marketing Prep</span>
-               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10">
+               <button className="shrink-0 p-1 text-ink-muted hover:text-ink hover:bg-black/5 rounded-[4px] transition-colors opacity-0 group-hover:opacity-100 z-10 relative">
                  <X size={12} weight="bold" />
                </button>
-               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-transparent group-hover:from-[#F8F9FA]/60 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
+               <div className="absolute right-0 top-0 bottom-0 w-8 bg-gradient-to-l from-paper group-hover:from-[#F8F9FA]/50 to-transparent rounded-tr-[10px] transition-all group-hover:opacity-0 pointer-events-none" />
             </div>
           </div>
 
