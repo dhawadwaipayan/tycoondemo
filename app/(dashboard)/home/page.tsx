@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, CheckCircle, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, RocketLaunch, Palette, BookOpen, Clock, Books } from "@phosphor-icons/react/dist/ssr";
+import { ArrowRight, CheckCircle, Plus, At, MicrophoneStage, CaretDown, MagicWand, ArrowUp, Table, FileText, PresentationChart, Kanban, Calendar, ListDashes, CheckSquare, Clock } from "@phosphor-icons/react/dist/ssr";
 import Image from "next/image";
 import { Typewriter, useTypewriterPlaceholder } from "@/components/motion/Typewriter";
 import { FadeIn, Stagger, StaggerItem } from "@/components/motion/PageMotion";
@@ -18,34 +18,22 @@ const templates = [
   {
     title: "Product Launch",
     description: "End-to-end launch plan with marketing assets and timelines.",
-    image: "/templates/product-launch.svg",
-    icon: RocketLaunch,
-    iconBg: "bg-blue-500",
-    accent: "from-blue-500/10 to-transparent",
+    image: "/templates/product-launch.png",
   },
   {
     title: "Brand Identity",
     description: "Generate logos, color palettes, and typography guidelines.",
-    image: "/templates/brand-identity.svg",
-    icon: Palette,
-    iconBg: "bg-purple-500",
-    accent: "from-purple-500/10 to-transparent",
+    image: "/templates/brand-identity.png",
   },
   {
     title: "Competitor Analysis",
     description: "Deep dive into market positioning and feature comparisons.",
-    image: "/templates/competitor.svg",
-    icon: PresentationChart,
-    iconBg: "bg-emerald-500",
-    accent: "from-emerald-500/10 to-transparent",
+    image: "/templates/competitor.png",
   },
   {
     title: "Content Strategy",
     description: "Blog topics, social media calendar, and SEO keywords.",
-    image: "/templates/content.svg",
-    icon: BookOpen,
-    iconBg: "bg-orange-500",
-    accent: "from-orange-500/10 to-transparent",
+    image: "/templates/content.png",
   },
 ];
 
@@ -434,43 +422,36 @@ export default function HomePage() {
           <div className="flex items-center justify-between">
             <h2 className="text-xl font-semibold tracking-tight text-ink">Templates</h2>
             <button className="text-[14px] font-semibold flex items-center gap-1.5 text-ink-muted hover:text-ink hover:underline transition-colors">
-              <Books size={15} weight="bold" />
               Library <ArrowRight size={14} weight="bold" />
             </button>
           </div>
-          <Stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" delay={0.05} stagger={0.08}>
-            {templates.map((template) => {
-              const Icon = template.icon;
-              return (
-                <StaggerItem key={template.title}>
-                  <motion.div
-                    whileHover={{ y: -5 }}
-                    transition={{ duration: 0.25 }}
-                    className="group cursor-pointer rounded-[20px] border border-border bg-paper overflow-hidden shadow-sm hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-ink/15 transition-all h-full flex flex-col"
-                  >
-                    <div className="relative h-[120px] overflow-hidden">
-                      <Image
-                        src={template.image}
-                        alt={template.title}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className={`absolute inset-0 bg-gradient-to-t ${template.accent}`} />
-                      <div className={`absolute bottom-3 left-3 w-8 h-8 rounded-[10px] ${template.iconBg} text-white flex items-center justify-center shadow-md`}>
-                        <Icon size={15} weight="fill" />
-                      </div>
-                    </div>
-                    <div className="p-4 flex flex-col gap-1.5 flex-1">
-                      <p className="text-[14px] font-semibold text-ink tracking-tight">{template.title}</p>
-                      <p className="text-[12px] text-ink-muted leading-relaxed">{template.description}</p>
-                      <span className="mt-auto pt-3 text-[12px] font-semibold text-ink-muted group-hover:text-ink flex items-center gap-1 transition-colors">
-                        Use template <ArrowRight size={12} weight="bold" className="transition-transform group-hover:translate-x-0.5" />
-                      </span>
-                    </div>
-                  </motion.div>
-                </StaggerItem>
-              );
-            })}
+          <Stagger className="flex gap-5 overflow-x-auto pb-4 snap-x scrollbar-hide" delay={0.05} stagger={0.08}>
+            {templates.map((template) => (
+              <StaggerItem key={template.title} className="snap-start shrink-0">
+                <motion.div
+                  whileHover={{ y: -5 }}
+                  transition={{ duration: 0.25 }}
+                  className="group cursor-pointer w-[320px] rounded-[24px] border border-border bg-paper overflow-hidden shadow-sm hover:shadow-[0_12px_32px_rgba(0,0,0,0.08)] hover:border-ink/15 transition-all flex flex-col"
+                >
+                  <div className="relative h-[180px] overflow-hidden bg-[#F8F9FA]">
+                    <Image
+                      src={template.image}
+                      alt={template.title}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </div>
+                  <div className="p-5 flex flex-col gap-2 flex-1">
+                    <p className="text-[16px] font-semibold text-ink tracking-tight">{template.title}</p>
+                    <p className="text-[13px] text-ink-muted leading-relaxed">{template.description}</p>
+                    <span className="mt-auto pt-4 text-[13px] font-semibold text-ink-muted group-hover:text-ink flex items-center gap-1.5 transition-colors">
+                      Use template <ArrowRight size={13} weight="bold" className="transition-transform group-hover:translate-x-0.5" />
+                    </span>
+                  </div>
+                </motion.div>
+              </StaggerItem>
+            ))}
+            <div className="snap-start shrink-0 w-[24px]" />
           </Stagger>
         </FadeIn>
       </div>
